@@ -1,0 +1,48 @@
+<!--<div class="inner-page">-->
+  <div class="map-container">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="parent-ul d-flex flex-column gap-3">
+
+            @for(Item of rendering?.fields?.sitemapLinks;track Item)
+            {
+            <li class="parent">
+              <a [routerLink]="Item?.siteMapUrlLink"> {{Item?.siteMapUrlName | json}} </a>
+              <ul class="child-ul d-flex flex-column gap-1">
+                @for(ItemChild of Item?.siteMapChildItems;track ItemChild)
+                {
+                <li class="child">
+                  <a [routerLink]="ItemChild?.siteMapUrlLink"> {{ItemChild?.siteMapUrlName}} </a>
+                </li>
+                }
+
+                <!--<li class="child">
+                    <a href="#"> قادة الإعلام </a>
+                  </li>-->
+              </ul>
+            </li>
+            }
+
+            <!-- <li class="parent">
+              <a href="#"> منظومة الإعلام </a>
+              <ul class="child-ul d-flex flex-column gap-1">
+                <li class="child">
+                  <a href="#"> التواصل الحكومي</a>
+                </li>
+                <li class="child">
+                  <a href="#"> التواصل الدولي</a>
+                </li>
+              </ul>
+            </li>
+            <li class="parent">
+              <a href="#"> اتصل بنا </a>
+            </li>-->
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<!--</div>-->

@@ -1,0 +1,129 @@
+.search-input{
+    padding: 40px 0;
+    .input-group{
+        height: 40px;
+        border: 1px solid var(--bs-dark-border);
+        border-radius: 4px;
+        position: relative;
+        .input-group-text {
+            background-color: transparent;
+            border: 0;
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+        .search{
+          position: absolute ;
+          left: 15px;
+          top: 9px;
+        }
+        .mic{
+          position: absolute ;
+          right: 15px;
+          top: 5px;
+        }
+        
+      
+      }
+   
+      .form-control{
+        height: 40px;
+        border: 0;
+        background: transparent;
+        color: var(--bs-light-400);
+        padding: 0 50px;
+        border-radius: 4px!important;
+        transition: .5s;
+        &:focus{
+            box-shadow: 0px 8px 8px -2px #10182814;
+            border-bottom: 2px solid var(--bs-primary-dark);
+            transition: .5s;
+    
+        }
+    
+      }
+      .btn{
+        height: 40px;
+      }
+   
+}
+
+.results{
+  padding: 40px 0 80px;
+  .title{
+    font-size: var(--bs-font-30);
+    font-weight: 700;
+    color: var(--nav-link-color);
+}
+p{
+  font-size: var(--bs-font-16);
+  color: var(--bs-light-400);
+  font-weight: 400;
+}
+.result-single{ margin-bottom: 40px; padding: 10px}
+
+.content{
+    h3{
+        font-weight: 700;
+        font-size: var(--bs-font-18);
+        color: var(--bs-light-800);
+        line-height: 1.4;
+        min-height: 50px;
+    }
+    p{
+        font-weight: 400;
+        font-size: var(--bs-font-16);
+        color: var(--bs-light-800);
+        margin: 0;
+        line-height: 1.4;
+    }
+    p.desc{
+      min-height: 67px;
+
+    }
+   
+}
+
+.dropdown-menu{
+  transition: 0.3s ;
+  width: 210px;
+   box-shadow: 0px 12px 16px -4px #10182814;
+   border: 0;
+   background-color: var(--bs-light-000);
+   padding: 0;
+   border-radius: 8px;
+   z-index: 999;
+   &.show{
+      transition: 0.3s 
+
+   }
+   li{
+      border-bottom: 1px dashed var(--bs-light-border);
+      
+          padding: 10px 8px;
+          font-weight: 500;
+          transition: .5s;
+          cursor: pointer;
+          &:hover{
+              background-color: var(--bs-light-100);
+              transition: .5s;
+          
+      }
+      &:last-child{
+          border-bottom: 0;
+              border-radius: 0 0 8px 8px;
+      
+   }
+   &:first-child{
+          border-radius: 8px 8px 0 0;
+  
+}
+  
+      
+   }
+
+ 
+}
+}

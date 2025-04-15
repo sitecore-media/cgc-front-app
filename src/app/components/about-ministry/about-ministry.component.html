@@ -1,0 +1,45 @@
+<div class="inner-page">
+  <!-- <div class="inner-baner bg">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb custom-breadcrumb">
+          <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+          <li class="breadcrumb-item active" aria-current="page">عن الوزارة</li>
+        </ol>
+      </nav>
+
+      <h3 class="title">عن الوزارة</h3>
+    </div>
+  </div> -->
+
+  <div class="inner-container">
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let Ministry of rendering.fields?.items" class="col-md-4">
+          <div class="card-light-border about-single gap-4">
+            <div class="icon">
+              <img
+                [src]="Ministry?.fields?.icon?.fields?.desktopImage?.value?.src || 'assets/img/media/Gov_Logo.svg'"
+                class=""
+                [alt]="Ministry?.fields?.icon.fields?.desktopImage?.value?.alt"
+                [title]="Ministry?.fields?.icon.fields?.desktopImage?.value?.alt"
+                onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                loading="lazy" decoding="async"
+              />
+            </div>
+            <h3>{{ Ministry?.fields?.title?.value }}</h3>
+            <a
+              class="btn btn-light ms-auto"
+              [routerLink]="Ministry?.fields?.link?.value?.href"
+            >
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- [href]="Ministry.fields.link.value.href" -->

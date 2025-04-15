@@ -1,0 +1,208 @@
+<!-- <div class="inner-page"> -->
+    <!-- <div class="inner-baner bg">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb custom-breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                    <li class="breadcrumb-item"><a href="#">الوزارة</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">قادة الإعلام </li>
+                </ol>
+            </nav>
+            <h3 class="title"> قادة الإعلام </h3>
+        </div>
+    </div> -->
+    <!-- <div class="inner-container ">
+        <div class="about-media">
+            <div class="container">
+                <div class="d-flex flex-column gap-2 mb-4">
+                    <h4 class="title">{{rendering?.fields?.title?.value}}</h4>
+                </div>
+                <div class="d-flex gap-4 justify-content-center flex-wrap mb-4">
+                    <div class="" *ngFor="let leader of rendering?.fields?.items?.fields">
+                        <div class="d-flex card-light-border board-card flex-column  p-4 gap-3">
+                            <div class="icon">
+                                <img [src]="leader?.image?.value.src" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-flex flex-column gap-2 ">
+                                <h3>{{leader?.leaderName?.value}}</h3>
+                                <p>{{leader?.leaderTitle?.value}}</p>
+                            </div>
+                            <div class="d-flex gap-2 ms-auto">
+                                <a class="btn btn-primary"  [routerLink]="generateDynamicHref(leader?.biography?.value?.href)">
+                                    {{leader?.biography?.value?.text}}
+                                </a>
+                                <a class="btn btn-outline-light" (click)="toggleContact()">
+                                    {{leader?.communicate?.value}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let leader of rendering?.fields?.items?.fields">
+                        <div class="d-flex card-light-border  board-card-2 flex-column  p-4 gap-3">
+                            <div class="icon">
+                                <img [src]="leader?.image?.value.src" class="img-fluid" alt="">
+                            </div>
+                            <div class="d-flex flex-column gap-2 ">
+                                <h3>{{leader?.leaderName?.value}}</h3>
+                                <p>{{leader?.leaderTitle?.value}}</p>
+                            </div>
+                            <div class="d-flex gap-2 ms-auto">
+                                <a class="btn btn-primary"  [routerLink]="generateDynamicHref(leader?.biography?.value?.href)">
+                                    {{leader?.biography?.value?.text}}
+                                </a>
+                                <a class="btn btn-outline-light" (click)="toggleContact()">
+                                    {{leader?.communicate?.value}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- <div class="overlay-contact" [ngClass]="{ 'show': isContactOpen }">
+</div>
+<div class="contact-popup" [ngClass]="{ 'show': isContactOpen }" *ngFor="let leader of rendering?.fields?.items?.fields">
+  <button class="close-btn" (click)="toggleContact()">&#x2715;</button>
+  <div class="contact-text d-flex gap-4 flex-column">
+    <div class="d-flex flex-column gap-2">
+    <h3>{{leader?.leaderName?.value}}</h3>
+    <p>{{leader?.leaderTitle?.value}}</p>
+    </div>
+    <div class="d-flex flex-column gap-2">
+        <h3>{{leader?.contactInfo?.value}}</h3>
+        <div class="d-flex gap-2">
+            <i class="fi fi-rr-envelope"></i>
+            <p>{{leader?.email?.value}}</p>
+        </div>
+        <div class="d-flex gap-2">
+            <i class="fi fi-rr-phone-flip"></i>
+            <p>{{leader?.contactNumber?.value}}</p>
+        </div>
+    </div>
+</div>
+</div> -->
+
+<!--<div class="inner-page">-->
+    <div class="inner-container">
+      <div class="about-media">
+        <div class="container">
+          <div class="d-flex justify-content-between gap-2 mb-4">
+            <!-- <h4 class="title">  {{ rendering?.fields?.Title?.value }}</h4> -->
+            <h4 class="title">  {{sectionTitle}}</h4>
+      
+            <div class="d-flex action-icon gap-3">
+                <a href="">
+                    <img src="assets/img/media/print.svg" alt="print" title="print" loading="lazy" decoding="async" />
+                </a>
+                <a href="">
+                    <img src="assets/img/media/mail-g.svg" alt="mail-g" title="mail-g" loading="lazy" decoding="async" />
+                </a>
+                <a href="">
+                    <img src="assets/img/media/share.svg" alt="share" title="share" loading="lazy" decoding="async" />
+                </a>
+            </div>
+          </div>
+          <!-- <div class="d-flex flex-column gap-2 mb-4">
+            <h4 class="title">{{ rendering?.fields?.Title?.value }}  </h4>
+          </div> -->
+  
+          <div class="d-flex gap-4 justify-content-center flex-wrap mb-4">
+            <div class="" *ngFor="let leader of firstTwoLeaders">
+              <div class="d-flex card-light-border board-card flex-column p-4 gap-3 h-100">
+                <div class="icon">
+                  <img 
+                  [src]="leader?.fields?.image?.value?.src" 
+                  class="img-fluid" 
+                  [alt]="leader?.fields?.leaderName?.value || 'Leader Image'"
+                  [title]="leader?.fields?.leaderName?.value || 'Leader Image'"
+                  onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                  loading="lazy" decoding="async"
+                  >
+                </div>
+                <div class="d-flex flex-column gap-2">
+                  <h3>{{ leader?.fields?.leaderName?.value }}</h3>
+                  <p>{{ leader?.fields?.leaderTitle?.value }}</p>
+                </div>
+                <div class="d-flex gap-2 ms-auto mt-auto">
+                  <a class="btn btn-primary" [routerLink]="leader?.fields?.biography?.value?.href">
+                    {{ leader?.fields?.biography?.value?.text }}
+                  </a>
+                  <a class="btn btn-outline-light" (click)="toggleContact(leader)">
+                    {{ leader?.fields?.communicate?.value }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row row-gap-4">
+            <div class="col-md-4" *ngFor="let leader of remainingLeaders">
+              <div class="d-flex card-light-border board-card-2 flex-column p-4 gap-3 h-100">
+
+                <div class="icon">
+                  <img 
+                  [src]="leader?.fields?.image?.value?.src" 
+                  class="img-fluid" 
+                  [alt]="leader?.fields?.leaderName?.value || 'Leader Image'"
+                  [title]="leader?.fields?.leaderName?.value || 'Leader Image'"
+                  onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                  loading="lazy" decoding="async"
+                  >
+                </div>
+                <div class="d-flex flex-column gap-2">
+                  <h3>{{ leader?.fields?.leaderName?.value }}</h3>
+                  <p>{{ leader?.fields?.leaderTitle?.value }}</p>
+                </div>
+                <div class="d-flex gap-2 ms-auto mt-auto">
+                  <a class="btn btn-primary" [routerLink]="leader?.fields?.biography?.value?.href">
+                    {{ leader?.fields?.biography?.value?.text }}
+                  </a>
+                  <a class="btn btn-outline-light" (click)="toggleContact(leader)">
+                    {{ leader?.fields?.communicate?.value }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Contact Popup -->
+    <div class="overlay-contact" [ngClass]="{ 'show': isContactOpen }"></div>
+    <div class="contact-popup" [ngClass]="{ 'show': isContactOpen }" *ngIf="selectedLeader">
+      <button class="close-btn" (click)="toggleContact(null)">&#x2715;</button>
+      <div class="contact-text d-flex gap-4 flex-column">
+        <div class="d-flex flex-column gap-2">
+          <h3>{{ selectedLeader?.fields?.leaderName?.value }}</h3>
+          <p>{{ selectedLeader?.fields?.leaderTitle?.value }}</p>
+        </div>
+        <div class="d-flex flex-column gap-2">
+          <h3>{{ selectedLeader?.fields?.contactInfo?.value }}</h3>
+          <div class="d-flex gap-2">
+            <i class="fi fi-rr-envelope"></i>
+            <p>{{ selectedLeader?.fields?.email?.value }}</p>
+          </div>
+          <div class="d-flex gap-2">
+            <i class="fi fi-rr-phone-flip"></i>
+            <p>{{ selectedLeader?.fields?.contactNumber?.value }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--</div>-->
+
+
+
+
+
+
+
+
+  
+
+

@@ -1,0 +1,335 @@
+<!-- rendering.fields?.newsDetailsList?.newsItems -->
+<!--<div class="inner-page">-->
+  <div class="news-container pt-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="d-flex gap-3">
+            <div *ngFor="let type of switchTypes">
+              <button
+                type="button"
+                class="btn btn-sm rounded-2"
+                [ngClass]="{ active: activeSwitchType === type }"
+                (click)="setActiveSwitchType(type)"
+              >
+                <i class="fas fa-{{ type }} fs-5 p-0 text-primary"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="news pt-5 pb-2">
+        <div class="row justify-content-center">
+          <div
+            *ngFor="let news of newsList"
+            class="card-light news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+          <div class="icon">
+            <img
+              [src]="news?.fields?.newslistingImage?.value?.src"
+              [alt]="news?.fields?.newslistingImage?.value?.alt"
+              [title]="news?.fields?.title?.value"
+              class="img-fluid"
+              loading="lazy"
+              decoding="async"
+              onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+            />
+          </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">{{ news?.fields?.title?.value }}</h3>
+                <p class="limit-three desc" [innerHTML]="news?.fields?.description?.value"></p>
+              <p class="date">{{ news?.fields?.newsDate?.value | localizedDate }}</p>
+              <a [routerLink]="news?.url" class="btn btn-primary me-auto">{{news?.fields?.readMoreText?.value}}</a>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="totalItems > pageSize" class="d-flex justify-content-center mt-3">
+          <pagination
+            [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [itemsPerPage]="pageSize"
+            [(ngModel)]="pageNumber"
+            (pageChanged)="onPageChange($event)"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;"
+          >
+          </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->
+
+
+<!-- Custom Pagination -->
+<!-- <div class="mt-3 text-center" *ngIf="totalNews > 0">     
+  <h5>{{ translatedShowingText }}</h5>
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">          
+      <li class="page-item" [class.disabled]="pageNumber === 1">
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          (click)="changePage(pageNumber - 1)"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>          
+      <li
+        *ngFor="let page of getPages(); let i = index"
+        class="page-item"
+      >
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          (click)="changePage(i + 1)"
+          [ngClass]="{ 'bg-success text-white': pageNumber === i + 1 }"
+        >
+          {{
+            language === "ar"
+              ? convertToArabicNumbers((i + 1).toString())
+              : i + 1
+          }}
+        </a>
+      </li>             
+      <li
+        class="page-item"
+        [class.disabled]="pageNumber === totalPages"
+      >
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          (click)="changePage(pageNumber + 1)"
+          aria-label="Next"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div> -->
+
+<!-- <div class="inner-page">
+  <div class="inner-baner bg">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb custom-breadcrumb">
+          <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+          <li class="breadcrumb-item"><a href="#">المركز الإعلامي</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> أخبار الوزارة </li>
+        </ol>
+      </nav>
+      <h3 class="title">{{rendering?.fields?.title?.value}}</h3>
+    </div>
+  </div>
+  <div class="news-container pt-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="d-flex gap-3">
+            <div *ngFor="let type of switchTypes">
+              <button type="button" class="btn  btn-sm rounded-2"
+                  [ngClass]="{ 'active': activeSwitchType === type }" (click)="setActiveSwitchType(type)">
+                  <i class="fas fa-{{ type }} fs-5 p-0 text-primary"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="news pt-5 pb-2">
+        <div class="row justify-content-center">
+          <div
+            *ngFor="let news of rendering.fields?.latestNewsList"
+            class="card-light news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'">
+            <div class="icon">
+              <img
+                [src]="news.fields.newslistingImage.value.src"
+                [alt]="news.fields.newslistingImage.value.alt"
+                class="img-fluid"  loading="lazy" decoding="async">
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">{{ news.fields.title.value }}</h3>
+              <p class="limit-three desc" [innerHTML]="news.fields.description.value"></p>
+              <p class="date">{{ news?.fields?.newsDate?.value | localizedDate }}</p>
+              <a [href]="news.url" class="btn btn-primary me-auto">{{news?.fields?.readMoreText?.value}}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <ngb-pagination
+            [collectionSize]="120"
+            [(page)]="page"
+            [maxSize]="3"
+            [rotate]="true"
+            [boundaryLinks]="false">
+            <ng-template ngbPaginationPrevious>
+              <i class="fi fi-rr-angle-small-left"></i>
+            </ng-template>
+            <ng-template ngbPaginationNext>
+              <i class="fi fi-rr-angle-small-right"></i>
+            </ng-template>
+          </ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="inner-page">
+  <div class="inner-baner bg">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb custom-breadcrumb">
+          <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+          <li class="breadcrumb-item"><a href="#">المركز الإعلامي</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            أخبار الوزارة
+          </li>
+        </ol>
+      </nav>
+      <h3 class="title">{{ rendering?.fields?.title?.value }}</h3>
+    </div>
+  </div>
+
+  <div class="news-container pt-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="d-flex gap-3">
+            <div *ngFor="let type of switchTypes">
+              <button
+                type="button"
+                class="btn btn-sm rounded-2"
+                [ngClass]="{ active: activeSwitchType === type }"
+                (click)="setActiveSwitchType(type)"
+              >
+                <i class="fas fa-{{ type }} fs-5 p-0 text-primary"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="news pt-5 pb-2">
+        <div class="row justify-content-center">
+          <div
+            *ngFor="let news of paginatedNews"
+            class="card-light news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div class="icon">
+              <img
+                [src]="news.fields.newslistingImage.value.src"
+                [alt]="news.fields.newslistingImage.value.alt"
+                class="img-fluid"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">{{ news.fields.title.value }}</h3>
+              <p
+                class="limit-three desc"
+                [innerHTML]="news.fields.description.value"
+              ></p>
+              <p class="date">
+                {{ news?.fields?.newsDate?.value | localizedDate }}
+              </p>
+              <a [href]="news.url" class="btn btn-primary me-auto">
+                {{ news?.fields?.readMoreText?.value }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-3 text-center" *ngIf="totalNews > 0">
+          
+          <h5>{{ translatedShowingText }}</h5>
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              
+              <li class="page-item" [class.disabled]="pageNumber === 1">
+                <a
+                  class="page-link"
+                  href="javascript:void(0)"
+                  (click)="changePage(pageNumber - 1)"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+
+              
+              <li
+                *ngFor="let page of getPages(); let i = index"
+                class="page-item"
+              >
+                <a
+                  class="page-link"
+                  href="javascript:void(0)"
+                  (click)="changePage(i + 1)"
+                  [ngClass]="{ 'bg-success text-white': pageNumber === i + 1 }"
+                >
+                  {{
+                    language === "ar"
+                      ? convertToArabicNumbers((i + 1).toString())
+                      : i + 1
+                  }}
+                </a>
+              </li>
+
+              
+              <li
+                class="page-item"
+                [class.disabled]="pageNumber === totalPages"
+              >
+                <a
+                  class="page-link"
+                  href="javascript:void(0)"
+                  (click)="changePage(pageNumber + 1)"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- This is the BreadCrumb -->
+   <!-- <div 
+  class="inner-baner bg"
+  [ngStyle]="{
+    'background-image': 'url(' + breadCrumbImage + ')',
+    'background-size': '120%', 
+    'background-position': 'center',
+    'background-repeat': 'no-repeat'
+  }"
+>
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb custom-breadcrumb">
+          <li class="breadcrumb-item" *ngIf="breadCrumbPathLinkOne">
+            <a href="#">{{ breadCrumbPathLinkOne }}</a>
+          </li>
+          <li class="breadcrumb-item" *ngIf="breadCrumbPathLinkTwo">
+            <a href="#">{{ breadCrumbPathLinkTwo }}</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="breadCrumbPathLinkThree">
+            {{ breadCrumbPathLinkThree }}
+          </li>
+        </ol>        
+      </nav>
+      <h3 class="title">{{ breadCrumbTitle }}</h3>
+    </div>
+  </div> -->

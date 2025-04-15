@@ -1,0 +1,40 @@
+
+/* You can add global styles to this file, and also import other style files */
+
+
+
+// Override the blue variable
+//$blue: #035206; /* Replace with your desired blue color */
+@import 'assets/scss/helpers/variables';
+
+// Import Bootstrap styles
+@import "bootstrap/scss/bootstrap";
+@import "rtl";
+@import "hover.css";
+@import 'assets/scss/layouts/header';
+@import 'assets/scss/pages/global-page';
+@import 'assets/scss/pages/home';
+@import 'assets/scss/pages/cgc';
+
+@import 'assets/scss/pages/contact';
+@import 'assets/scss/pages/search';
+@import 'assets/scss/pages/inner';
+
+@import 'assets/scss/layouts/footer';
+
+@import "responsive.scss";
+
+
+@import '../node_modules/@flaticon/flaticon-uicons/css/all/all.css';
+@import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '../node_modules/@angular/cdk/overlay-prebuilt.css';
+@import '../node_modules/ngx-lightbox/lightbox.css';
+
+
+
+
+
+
+

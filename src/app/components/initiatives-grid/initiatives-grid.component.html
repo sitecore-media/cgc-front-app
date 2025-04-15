@@ -1,0 +1,140 @@
+
+
+<div class="inner-page">
+  <!--<div class="inner-baner bg">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb custom-breadcrumb">
+          <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            البرامج والمبادرات
+          </li>
+        </ol>
+      </nav>
+
+      <h3 class="title">البرامج والمبادرات</h3>
+    </div>
+  </div>-->
+
+  <div class="inner-container">
+    <div class="container">
+      <div class="row">
+        @for(Item of rendering?.fields?.ListImageLink;track Item)
+        {
+          <div class="col-md-4">
+            <div class="card-light-border initiatives-card gap-3">
+              <div class="image">
+                <img
+                  [src]="Item?.fields?.image?.value?.src || 'assets/img/media/training.png'"
+                  class="img-fluid"
+                  [alt]="Item?.fields?.image?.value?.alt || 'training'"
+                  [title]="Item?.fields?.image?.value?.alt || 'training'"
+                  onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                  loading="lazy" decoding="async"
+                />
+              </div>
+              <a class="btn btn-light ms-auto" [href]="Item?.fields?.link?.value?.href || '#'">
+                <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+              </a>
+            </div>
+          </div>
+        }
+        <!--<div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img
+                src="assets/img/media/training.png"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/speakers.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/konoz.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/media-oasis.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/mediathon.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/impact-makers.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/media-forum.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/logo-gold-white.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-light-border initiatives-card gap-3">
+            <div class="image">
+              <img src="assets/img/media/saudipedia.png" alt="" />
+            </div>
+            <a class="btn btn-light ms-auto" href="#">
+              <i class="fi fi-rr-arrow-left fs-4 d-flex"></i>
+            </a>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+

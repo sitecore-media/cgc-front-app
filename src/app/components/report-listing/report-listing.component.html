@@ -1,0 +1,206 @@
+
+
+  <div class="news-container pt-4">
+    <div class="container">
+      <div class="row align-items-center g-3">
+        <div class="col-md-6">
+          <div class="d-flex gap-3">
+            <div *ngFor="let type of switchTypes">
+              <button
+                type="button"
+                class="btn btn-sm rounded-2"
+                [ngClass]="{ active: activeSwitchType === type }"
+                (click)="setActiveSwitchType(type)"
+              >
+                <i class="fas fa-{{ type }} fs-5 p-0 text-primary"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row g-3">
+            <!-- hashing search and filter -->
+            <!-- <div class="col-lg-6">
+              <div class="d-flex gap-3 align-items-center">
+                <label for="filter-select" class="d-flex gap-1">
+                  <i class="fi fi-rs-filter"></i> تصفية</label
+                >
+
+                <select
+                  class="form-select form-control"
+                  aria-label="Default select example"
+                  id="filter-select"
+                >
+                  <option selected>من الأحدث الى الأقدم</option>
+                  <option value="1">من الأقدم الى الأحدث</option>
+                </select>
+              </div>
+            </div> -->
+            <!-- <div class="col-lg-6">
+              <div class="search-input d-flex align-items-center gap-3 p-0">
+                <div class="input-group">
+                  <span class="input-group-text search" id="basic-addon1">
+                    <img
+                      src="assets/img/media/se.svg"
+                      alt=""
+                      style="width: 20px"
+                    />
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="بحث"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+
+                  <span class="input-group-text mic" id="basic-addon1">
+                    <img
+                      src="assets/img/media/mic.svg"
+                      alt=""
+                      style="width: 25px"
+                    />
+                  </span>
+                </div>
+                <a class="btn btn-primary" href="#"> بحث </a>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="news pt-5 pb-2">
+        <div class="row justify-content-center">
+          <div *ngFor="let report of rendering?.fields?.items"
+            class="card-light-border p-3 news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div  class="icon card-light-border p-3">
+              <img
+                [src]="report?.fields?.listingImage?.value?.src"
+                [alt]="report?.fields?.listingImage?.value?.alt"
+                [title]="report?.fields?.listingImage?.value?.alt"
+                onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                loading="lazy" decoding="async" />
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">
+                {{report?.fields?.title?.value}}
+              </h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a [routerLink]="report?.url" class="btn btn-primary">  
+                  {{report?.fields?.readMore?.value}}
+                   </a>
+                <p class="date">
+                  {{report?.fields?.date?.value}}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div
+            class="card-light-border p-3 news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div class="icon card-light-border p-3">
+              <img src="assets/img/media/reports2.png" class="" alt="" />
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">
+                ملخص المؤتمر الصحفي الدوري الثاني عشر للتواصل الحكومي
+              </h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="btn btn-primary">عرض</a>
+                <p class="date">10 ديسمبر 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-light-border p-3 news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div class="icon card-light-border p-3">
+              <img src="assets/img/media/reports3.png" class="" alt="" />
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">
+                ملخص المؤتمر الصحفي الدوري للتواصل الحكومي
+              </h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="btn btn-primary">عرض</a>
+                <p class="date">10 ديسمبر 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-light-border p-3 news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div class="icon card-light-border p-3">
+              <img src="assets/img/media/reports4.png" class="" alt="" />
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">تقرير المركز الإعلامي الافتراضي للحج</h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="btn btn-primary">عرض</a>
+                <p class="date">10 ديسمبر 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-light-border p-3 news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div class="icon card-light-border p-3">
+              <img src="assets/img/media/reports1.png" class="" alt="" />
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">تقرير المركز الإعلامي</h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="btn btn-primary">عرض</a>
+                <p class="date">10 ديسمبر 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="card-light-border p-3 news-single"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div class="icon card-light-border p-3">
+              <img src="assets/img/media/reports2.png" class="" alt="" />
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">تقرير المركز</h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="btn btn-primary">عرض</a>
+                <p class="date">10 ديسمبر 2024</p>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <!-- <div class="d-felx justify-content-center">
+          <ngb-pagination
+            [collectionSize]="120"
+            [(page)]="page"
+            [maxSize]="3"
+            [rotate]="true"
+            [boundaryLinks]="false"
+          >
+            <ng-template ngbPaginationPrevious>
+              <i class="fi fi-rr-angle-small-left"></i>
+            </ng-template>
+
+            <ng-template ngbPaginationNext>
+              <i class="fi fi-rr-angle-small-right"></i>
+            </ng-template>
+          </ngb-pagination>
+        </div> -->
+      </div>
+    </div>
+  </div>
+

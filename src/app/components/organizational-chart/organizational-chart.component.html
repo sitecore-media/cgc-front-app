@@ -1,0 +1,164 @@
+<div class="inner-container">
+  <div class="about-media">
+    <div class="container">
+      <div class="d-flex justify-content-between gap-2 mb-4">
+        <!-- <h4 class="title"> {{rendering?.fields?.MainTitle?.value}}</h4> -->
+        <h4 class="title"> {{sectionTitle}}</h4>
+
+        <div class="d-flex action-icon gap-3">
+            <a href="">
+                <img src="assets/img/media/print.svg" alt="print" title="print" loading="lazy" decoding="async" />
+            </a>
+            <a href="">
+                <img src="assets/img/media/mail-g.svg" alt="mail-g" title="mail-g" loading="lazy" decoding="async" />
+            </a>
+            <a href="">
+                <img src="assets/img/media/share.svg" alt="share" title="share" loading="lazy" decoding="async" />
+            </a>
+        </div>
+    </div>
+    </div>
+
+  </div>
+  <div class="">
+    <div class=" flex justify-content-center organizationChart">
+      <p-organizationChart [value]="data" [style]=" {'direction': 'ltr'}" collapsible="false">
+        <ng-template let-node pTemplate="default">
+          <div class="node-content text-center">
+
+            <div class="" (click)=" test(node)">
+              {{ node.label }}
+            </div>
+          </div>
+        </ng-template>
+      </p-organizationChart>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+<!--<div class="inner-page">-->
+<!--<div class="inner-container">
+    <div class="about-media">
+      <div class="container">
+        <div class="d-flex flex-column gap-2">
+          <h4 class="title">{{rendering?.fields?.MainTitle?.value}}</h4>
+        </div>
+      </div>
+
+      <div class="mt-4 container-xxl">
+        <h1 class="level-1 rectangle" (click)="toggleContactToMinister()">{{rendering?.fields?.title?.value}}</h1>
+        <ol class="level-2-wrapper">
+          <li *ngFor="let department of rendering?.fields?.organizationalSection">
+            <h2 class="level-2 rectangle" (click)="toggleContact(department)">
+              {{ department.fields.title.value }}
+            </h2>
+            <ol class="level-3-wrapper left" *ngIf="department.fields.organizationalSection.length > 0">
+              <li *ngFor="let subDepartment of department.fields.organizationalSection">
+                <h3 class="level-3 rectangle" (click)="toggleContact(subDepartment)">
+                  {{ subDepartment.fields.title.value }}
+                </h3>
+                <ol class="level-4-wrapper" *ngIf="subDepartment.fields.organizationalSection.length > 0">
+                  <li *ngFor="let subSubDepartment of subDepartment.fields.organizationalSection">
+                    <h4 class="level-4 rectangle" >{{ subSubDepartment.fields.title.value }}</h4>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>-->
+<!--</div>-->
+
+<!-- [ngClass]="{'level-1 rectangle': rendering?.fields?.Color?.value === 'Green'}" -->
+<!-- [ngClass]="{'level-2 rectangle': department?.fields?.Color?.value === 'Green'}" -->
+<!-- [ngClass]="{'level-3 rectangle': subDepartment?.fields?.Color?.value === 'Green'}" -->
+<!-- [ngClass]="{'level-4 rectangle': subSubDepartment?.fields?.Color?.value === 'Grey'}" -->
+
+<div class="overlay-contact" [ngClass]="{ show: isContactOpen }"></div>
+<div class="contact-popup" [ngClass]="{ show: isContactOpen }">
+  <button class="close-btn" (click)="toggleContact()">&#x2715;</button>
+  <div class="contact-text d-flex gap-4 flex-column">
+    <div class="title d-flex flex-column gap-2">
+      <h3>{{ selectedDepartment?.fields.title.value }}</h3>
+      <p>{{ selectedDepartment?.fields.description.value }}</p>
+    </div>
+    <div class="d-flex flex-column gap-2">
+      <h3>{{ selectedDepartment?.fields.ContactDetails.value }}</h3>
+      <div class="d-flex gap-2">
+        <i class="fi fi-rr-envelope"></i>
+        <p>{{ selectedDepartment?.fields.emailID.value }}</p>
+      </div>
+      <div class="d-flex gap-2">
+        <i class="fi fi-rr-phone-flip"></i>
+        <p>{{ selectedDepartment?.fields.contactNo.value }}</p>
+      </div>
+    </div>
+    <div class="d-flex gap-1">
+      <div class="d-flex">
+        <img [src]="selectedDepartment?.fields.ImageCart.value.src" class="img-fluid" alt=""
+          onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'" />
+      </div>
+      <div class="d-flex flex-column gap-2">
+        <div>
+          <h3>{{ selectedDepartment?.fields.ManagerName.value }}</h3>
+          <p>{{ selectedDepartment?.fields.ManagerNameResult.value }}</p>
+        </div>
+        <div class="d-flex gap-2 ms-auto">
+          <a class="btn btn-primary" [href]="selectedDepartment?.fields?.ministerLink?.value?.href">
+            {{selectedDepartment?.fields?.ministerLink?.value?.text}} </a>
+          <a class="btn btn-outline-light"
+            [href]="selectedDepartment?.fields?.communication?.value?.href">{{selectedDepartment?.fields?.communication?.value?.text}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="overlay-contact" [ngClass]="{ show: isContactOpenToMinster }"></div>
+<div class="contact-popup" [ngClass]="{ show: isContactOpenToMinster }">
+  <button class="close-btn" (click)="toggleContactToMinister()">&#x2715;</button>
+  <div class="contact-text d-flex gap-4 flex-column">
+    <div class="title d-flex flex-column gap-2">
+      <h3>{{ rendering?.fields?.title?.value }}</h3>
+      <p>
+        {{ rendering?.fields?.description?.value }}
+      </p>
+    </div>
+    <div class="d-flex flex-column gap-2">
+      <h3>{{ rendering?.fields.ContactDetails.value }}</h3>
+      <div class="d-flex gap-2">
+        <i class="fi fi-rr-envelope"></i>
+        <p>{{ rendering?.fields?.emailID?.value }}</p>
+      </div>
+      <div class="d-flex gap-2">
+        <i class="fi fi-rr-phone-flip"></i>
+        <p>{{ rendering?.fields?.contactNo?.value }}</p>
+      </div>
+    </div>
+    <div class="d-flex gap-1">
+      <div class="d-flex">
+        <img [src]="rendering?.fields.ImageCart.value.src"
+         class="img-fluid" alt="" 
+         onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+        />
+      </div>
+      <div class="d-flex flex-column gap-2">
+        <div>
+          <h3>{{ rendering?.fields.ManagerName.value }}</h3>
+          <p>{{ rendering?.fields.ManagerNameResult.value }}</p>
+        </div>
+        <div class="d-flex gap-2 ms-auto">
+          <a class="btn btn-primary" [href]="rendering?.fields?.ministerLink?.value?.href"> {{rendering?.fields?.ministerLink?.value?.text}} </a>
+          <a class="btn btn-outline-light" [href]="rendering?.fields?.communication?.value?.href">{{rendering?.fields?.communication?.value?.text}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->

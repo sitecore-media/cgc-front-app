@@ -1,0 +1,111 @@
+trigger:
+  branches:
+    include:
+      - main
+      - dev
+variables:
+  projectName: 'media-portal'
+  imageName: $(projectName)
+  containerRegistry: 'angualrreg.azurecr.io'
+  aksResourceGroup: 'rs-sitecore-barq'
+  aksCluster: 'aks-sitecore-barq'
+  namespace: $(projectName)-$(Build.SourceBranchName) # dev or test
+  IMAGE_TAG: $(projectName)-$(Build.SourceBranchName)-$(Build.BuildId)
+  domain: $(Build.SourceBranchName).$(projectName).com
+stages:
+
+- stage: Build
+  displayName: Build and Push Docker Image
+  jobs:
+  - job: Build
+    displayName: Build Docker Image
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - checkout: self
+      displayName: 'Checkout Source Code'
+    - task: Bash@3
+      inputs:
+         targetType: 'inline'
+         script: |
+           # Write your commands here
+                
+           echo 'Hello world'
+           pwd
+           echo "Listing Workspace Contents:"
+           ls -R $(Pipeline.Workspace)/s                
+    - task: Docker@2
+      displayName: Build and Push Docker Image
+      inputs:
+        containerRegistry: 'angularreg-sc'
+        repository: '$(imageName)'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: |
+          $(IMAGE_TAG)
+        arguments: '--no-cache'
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Kubernetes YAMLs'
+      inputs:
+        targetPath: '$(System.DefaultWorkingDirectory)/k8s'
+        artifact: 'k8s'
+- stage: Deploy
+  displayName: Deploy to AKS
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy to AKS
+    pool:
+      vmImage: 'ubuntu-latest'
+    environment: dev
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Kubernetes YAMLs'
+            inputs:
+              artifactName: 'k8s'
+              downloadPath: '$(Pipeline.Workspace)/k8s'
+          - task: AzureCLI@2
+            displayName: Set up AKS Context
+            inputs:
+              azureSubscription: 'azure-sub-sc'
+              scriptType: 'bash'
+              scriptLocation: 'inlineScript'
+              inlineScript: |
+                az aks get-credentials --resource-group $(aksResourceGroup) --name $(aksCluster)
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Write your commands here
+                az acr login --name angualrreg.azurecr.io
+                echo 'Hello world'
+                pwd
+                echo "Listing Workspace Contents:"
+                ls -R $(Pipeline.Workspace)/
+          - task: Bash@3
+            displayName: 'Set Namespace and Apply YAML Files'
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Create namespace if not exists
+                kubectl create namespace $(namespace) --dry-run=client -o yaml | kubectl apply -f -
+                
+                # Substitute variables in YAML files
+                sed -i "s|\${NAMESPACE}|$(namespace)|g; s|\${CONTAINER_REGISTRY}|$(containerRegistry)|g; s|\${IMAGE_NAME}|$(imageName)|g; s|\${IMAGE_TAG}|$(IMAGE_TAG)|g" \
+                  $(Pipeline.Workspace)/k8s/deployment.yaml
+
+                sed -i "s|\${NAMESPACE}|$(namespace)|g" $(Pipeline.Workspace)/k8s/service.yaml
+                sed -i "s|\${NAMESPACE}|$(namespace)|g; s|\${DOMAIN}|$(domain)|g" $(Pipeline.Workspace)/k8s/ingress.yaml
+                
+                # Apply Deployment YAML
+                kubectl apply -f $(Pipeline.Workspace)/k8s/deployment.yaml --namespace=$(namespace)
+                
+                # Apply Service YAML
+                kubectl apply -f $(Pipeline.Workspace)/k8s/service.yaml --namespace=$(namespace)
+                
+                # Apply Ingress YAML
+                kubectl apply -f $(Pipeline.Workspace)/k8s/ingress.yaml --namespace=$(namespace)

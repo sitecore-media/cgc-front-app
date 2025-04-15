@@ -1,0 +1,56 @@
+<!--<section class="home-banner" style="background-image: url('{{ rendering.fields?.heroImage?.value.src }}');">
+  <div class="container">
+    <div class="content d-flex ">
+      <div class="d-flex flex-column gap-4" >
+        <h3 class="fw-400" data-aos="fade-up" data-aos-duration="1200"> {{rendering.fields?.heroTitle?.value}}<br>
+          <span class="fw-600">  {{rendering.fields?.heroSubtitle?.value}}</span>
+        </h3>
+        <p class="m-0 fw-400" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">{{rendering?.fields?.HeroDescription?.value}}</p>
+      </div>
+      <div class="d-flex gap-2 align-items-center"  data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+        <a class="btn btn-primary btn-large" [routerLink]="rendering.fields?.heroLink1?.value.href">{{rendering.fields?.heroLink1?.value.text}}</a>
+        <a class="btn btn-light btn-large"   [routerLink]="rendering.fields?.heroLink2?.value.href">{{rendering.fields?.heroLink2?.value.text}}</a>
+      </div>
+    </div>
+  </div>
+</section>-->
+<section class="home-banner ">
+  <owl-carousel-o [options]="BannerOptions">
+    <ng-template carouselSlide  *ngFor="let Item of rendering?.fields?.items">
+        <div class="slide" style="background-image: url('{{Item?.fields?.heroImage?.value?.src}}');">
+            <!-- <img src="assets/img/media/banner.jpg" class="" alt=""> *ngIf="!Item?.fields?.heroTitle?.value"-->
+            <div class="container" >
+              <div class="content d-flex ">
+                <div class="d-flex flex-column gap-4">
+                  <h3  class="fw-600" data-aos="fade-up" data-aos-duration="1200"> 
+                     {{Item?.fields?.heroTitle?.value}} {{Item?.fields?.heroSubtitle?.value}}
+                      
+                  </h3>
+                  <p  class="m-0 fw-400" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+                   {{Item?.fields?.HeroDescription?.value}}
+                    </p>
+          
+                    <div  class="d-flex gap-2 align-items-center" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+                      <a class="btn btn-light " [routerLink]="Item?.fields?.heroLink2?.value?.href">
+                        {{Item?.fields?.heroLink2?.value?.text}} </a>
+              
+                    </div>
+          
+                </div>
+               
+              </div>
+          
+            </div>
+        </div>
+    </ng-template>
+    <!--<ng-template carouselSlide>
+        <div class="slide" style="background-image: url('/assets/img/media/Hero-Section.png');">
+        </div>
+    </ng-template>
+    <ng-template carouselSlide>
+      <div class="slide" style="background-image: url('/assets/img/media/Hero-Section.png');">
+      </div>
+    </ng-template>-->
+
+</owl-carousel-o>
+</section>

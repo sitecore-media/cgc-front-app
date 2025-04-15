@@ -1,0 +1,119 @@
+<!-- <div class="questions-container">
+  <div class="container">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div *ngFor="let Faq of rendering?.fields?.Faq; let i = index" class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#flush-collapse' + i" aria-expanded="false" [attr.aria-controls]="'flush-collapse' + i">
+            {{ Faq?.fields?.Question?.value}}
+          </button>
+        </h2>
+        <div [id]="'flush-collapse' + i" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            {{ Faq?.fields?.Answer?.value}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card-light-border p-3 d-flex flex-column gap-3">
+      <div class="icon" style="flex: none">
+        <img src="assets/img/media/mail-02.png" class="img-fluid" alt="mail" title="mail" loading="lazy"
+        decoding="async" />
+      </div>
+
+      <h3> 
+        {{rendering?.fields?.Label?.value}}
+      </h3>
+      <p>
+        {{rendering?.fields?.Description?.value}}
+      </p>
+      <a class="btn btn-primary" [href]=" rendering?.fields?.Link?.value?.href">
+        {{rendering?.fields?.Link?.value?.text}}
+      </a>
+    </div>
+  </div>
+</div> -->
+<div class="questions-container">
+  <div class="container">
+
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation" *ngFor="let category of rendering?.fields?.items; let i = index">
+        <button
+          class="nav-link"
+          [class.active]="i === 0"
+          [attr.id]="'pills-tab-' + i"
+          data-bs-toggle="pill"
+          [attr.data-bs-target]="'#pills-' + i"
+          type="button"
+          role="tab"
+          [attr.aria-controls]="'pills-' + i"
+          [attr.aria-selected]="i === 0"
+        >
+          {{ category.fields?.Name?.value }}
+        </button>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="pills-tabContent">
+      <div
+        class="tab-pane fade"
+        [class.show]="i === 0"
+        [class.active]="i === 0"
+        *ngFor="let category of rendering?.fields?.items; let i = index"
+        [attr.id]="'pills-' + i"
+        role="tabpanel"
+        [attr.aria-labelledby]="'pills-tab-' + i"
+      >
+        <div class="accordion accordion-flush" [attr.id]="'accordionFlush-' + i">
+          <div
+            class="accordion-item"
+            *ngFor="let faq of category.fields?.Faq; let j = index"
+          >
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#collapse-' + i + '-' + j"
+                aria-expanded="false"
+                [attr.aria-controls]="'collapse-' + i + '-' + j"
+              >
+                {{ faq.fields?.Question?.value }}
+              </button>
+            </h2>
+            <div
+              [id]="'collapse-' + i + '-' + j"
+              class="accordion-collapse collapse"
+              [attr.data-bs-parent]="'#accordionFlush-' + i"
+            >
+              <div class="accordion-body">
+                {{ faq.fields?.Answer?.value }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+   
+  </div>
+
+  <div class="container">
+    <div class="card-light-border p-3 d-flex flex-column gap-3">
+      <div class="icon" style="flex: none">
+        <img src="assets/img/media/mail-02.png" class="img-fluid" alt="" />
+      </div>
+
+      <h3>التعليقات والاقتراحات</h3>
+      <p>
+        لأي استفسار أو ملاحظات حول الخدمات الحكومية، يرجى ملء المعلومات
+        المطلوبة.
+      </p>
+      <a class="btn btn-primary" href="#">تواصل معنا</a>
+    </div>
+  </div>
+</div>

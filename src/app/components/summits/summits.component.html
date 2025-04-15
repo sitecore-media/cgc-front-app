@@ -1,0 +1,122 @@
+<!-- Template -->
+<!--<div class="inner-page">-->
+  <div class="news-container conference pt-4">
+    <div class="container">
+      <div class="d-flex justify-content-between gap-2 mb-4">
+        <h4 class="title"> {{ rendering?.fields?.governmentpressconference?.value }}</h4>
+
+        <div class="d-flex action-icon gap-3">
+            <a href="">
+                <img src="assets/img/media/print.svg" alt="print" title="print" loading="lazy" decoding="async" />
+            </a>
+            <a href="">
+                <img src="assets/img/media/mail-g.svg" alt="mail-g" title="mail-g" loading="lazy" decoding="async" />
+            </a>
+            <a href="">
+                <img src="assets/img/media/share.svg" alt="share" title="share" loading="lazy" decoding="async" />
+            </a>
+        </div>
+    </div>
+      <!-- <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+        <h4 class="title">
+          {{ rendering?.fields?.governmentpressconference?.value }}
+        </h4>
+        <div class="d-flex gap-3">
+          Action buttons remain same 
+        </div>
+      </div> -->
+
+      <div class="news py-4">
+        <!-- Current/Live Video Section -->
+        <div class="row pb-4 g-3" *ngIf="currentSummit">
+          <div class="col-12">
+            <div class="d-flex flex-column gap-3 position-relative">
+              <!-- <div class="video-container"> -->
+              <!-- <div class="live-badge">LIVE</div> -->
+
+              <iframe
+                *ngIf="currentSummitVideoUrl"
+                [src]="currentSummitVideoUrl"
+                class="live-video"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+              <!-- </div> -->
+              <h5 class="conference-title">
+                {{ currentSummit?.fields?.title?.value }}
+              </h5>
+              <p
+                class="conference-desc"
+                *scRichText="currentSummit?.fields?.shortDescription"
+              ></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous Conferences -->
+        <div class="row justify-content-center">
+          <h5 class="conference-title mb-4">
+            {{ rendering?.fields?.previousconferences?.value }}
+          </h5>
+          <div
+            class="card-light-border p-3 news-single conference-single"
+            *ngFor="let summit of summitList"
+          >
+            <div class="icon">
+              <!-- <img
+                [src]="summit?.fields?.view?.value?.src"
+                alt="Summit Thumbnail"
+              /> -->
+              <iframe
+                width="100%"
+                height="200"
+                [src]="summit.sanitizedVideoUrl"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+              <div class="play">
+                <i class="fi fi-br-caret-right"></i>
+              </div>
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">{{ summit?.fields?.title?.value }}</h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a
+                  [href]="summit?.fields?.videolink?.value"
+                  target="_blank"
+                  class="btn btn-primary"
+                >
+                  {{ rendering?.fields?.view?.value }}
+                </a>
+                <p class="date">
+                  {{ summit?.fields?.date?.value | localizedDate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination remains same -->
+        <div
+          *ngIf="totalItems > pageSize"
+          class="d-flex justify-content-center mt-3"
+        >
+          <pagination
+            [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [itemsPerPage]="pageSize"
+            [(ngModel)]="pageNumber"
+            (pageChanged)="onPageChange($event)"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;"
+          >
+          </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->

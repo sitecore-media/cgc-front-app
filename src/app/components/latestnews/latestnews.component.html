@@ -1,0 +1,145 @@
+<!--<section class="news">
+  <div class="container">
+    
+    <div class="d-flex justify-content-between align-items-center mb-3" data-aos="fade-up" data-aos-duration="1200">
+      <h3 class="title">{{ rendering?.fields?.title?.value }}</h3>
+      <a class="btn btn-outline-success" [routerLink]="rendering?.fields?.link?.value?.href">
+        {{ rendering?.fields?.link?.value?.text }}
+      </a>
+    </div>
+
+
+    <div class="slider my-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500">
+      <swiper-container class="my-3 custom" slides-per-view="1" space-between="10" navigation="true" pagination="true"
+        pagination-clickable="true" autoplay='{"delay": 2500}' loop="true" breakpoints='{
+          "640": { "slidesPerView": 1.5, "spaceBetween": 20 },
+          "768": { "slidesPerView": 2, "spaceBetween": 30 },
+          "1024": { "slidesPerView": 2.5, "spaceBetween": 40 },
+          "1324": { "slidesPerView": 3, "spaceBetween": 40 }
+        }'>
+        
+        <swiper-slide *ngFor="let item of rendering?.fields?.latestNewsList">
+          <div class="card-light news-single">
+            
+            <div class="icon">
+              
+              <img 
+                *scImage="item?.fields?.image"
+                [alt]="item.fields.image?.value?.alt" 
+                [title]="item.fields.image?.value?.alt"
+                onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                loading="lazy" decoding="async" />
+            </div>
+           
+            
+            <div class="content d-flex flex-column gap-2">
+              
+              <h3 class="limit-two">{{ item?.fields?.title?.value }}</h3>
+
+              
+              <p class="limit-three" [innerHTML]="item?.fields?.description?.value"></p>
+
+             
+              <p class="date">
+                
+                {{ item?.fields?.newsDate?.value | localizedDate }}
+              </p>
+
+              
+              <a [routerLink]="item?.url" class="btn btn-primary me-auto">
+                {{ item?.fields?.readMoreText?.value }}
+              </a>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</section>-->
+
+<!--news new-->
+<section class="news">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center  mb-3"  data-aos="fade-up" data-aos-duration="1200">
+
+      <h3 class="title">{{ rendering?.fields?.title?.value }}</h3>
+      <a class="btn btn-outline-light " [routerLink]="rendering?.fields?.link?.value?.href">{{ rendering?.fields?.link?.value?.text }}  </a>
+
+    </div>
+
+    <div class="slider my-4"  data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500">
+     
+
+      <owl-carousel-o [options]="customOptionsnews" >
+        @for(item of rendering?.fields?.latestNewsList;track item)
+        {
+          <ng-template carouselSlide>
+            <div class="card-light-border news-single">
+              <div class="icon">
+                <img 
+                [src]="item?.fields?.image.value.src || '/assets/img/media/news1.png'"
+                [alt]="item.fields.image?.value?.alt || '/assets/img/media/news1.png'" 
+                [title]="item.fields.image?.value?.alt || 'Imagenews'"
+                onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                loading="lazy" decoding="async" />
+              </div>
+              <div class="content d-flex flex-column gap-2">
+                <h3 class="limit-two">  {{ item?.fields?.title?.value }} </h3>
+                <p class="limit-three  desc">{{item?.fields?.description?.value}}</p>
+                <p class="date"> {{ item?.fields?.newsDate?.value | localizedDate }}  </p>
+                <a [routerLink]="item?.url" class="btn btn-primary me-auto"> {{ item?.fields?.readMoreText?.value }}</a>
+                
+              </div>
+            </div>
+          </ng-template> 
+        }
+        
+        <!--<ng-template carouselSlide>
+          <div class=" card-light news-single">
+            <div class="icon">
+              <img src="assets/img/media/news2.png" class="" alt="">
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">وزير الإعلام يلتقي في بكين مديرَ مكتب الإعلام بمجلس </h3>
+              <p class="limit-three">التقى معالي وزير الإعلام الأستاذ سلمان بن يوسف الدوسري في العاصمة الصينية بكين
+                اليوم؛ معالي مدير مكتب الإعلام بمجلس </p>
+              <p class="date">14 ديسمبر 2024</p>
+              <a href="#" class="btn btn-primary me-auto">قراءة المزيد</a>
+            </div>
+          </div>
+        </ng-template>  
+        <ng-template carouselSlide>
+          <div class=" card-light news-single">
+            <div class="icon">
+              <img src="assets/img/media/news3.png" class="" alt="">
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">وزير الإعلام يلتقي في بكين مديرَ مكتب الإعلام بمجلس </h3>
+              <p class="limit-three">التقى معالي وزير الإعلام الأستاذ سلمان بن يوسف الدوسري في العاصمة الصينية بكين
+                اليوم؛ معالي مدير مكتب الإعلام بمجلس </p>
+              <p class="date">14 ديسمبر 2024</p>
+              <a href="#" class="btn btn-primary me-auto">قراءة المزيد</a>
+            </div>
+          </div>
+        </ng-template>  
+        <ng-template carouselSlide>
+          <div class=" card-light news-single">
+            <div class="icon">
+              <img src="assets/img/media/news1.png" class="" alt="">
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">وزير الإعلام يلتقي في بكين مديرَ مكتب الإعلام بمجلس </h3>
+              <p class="limit-three">التقى معالي وزير الإعلام الأستاذ سلمان بن يوسف الدوسري في العاصمة الصينية بكين
+                اليوم؛ معالي مدير مكتب الإعلام بمجلس </p>
+              <p class="date">14 ديسمبر 2024</p>
+              <a href="#" class="btn btn-primary me-auto">قراءة المزيد</a>
+            </div>
+          </div>
+        </ng-template> --> 
+      </owl-carousel-o>
+
+    </div>
+
+  </div>
+</section>

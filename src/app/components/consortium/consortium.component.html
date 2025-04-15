@@ -1,0 +1,142 @@
+
+
+
+  <!-- <div class="inner-baner bg">
+      <div class="container">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb custom-breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                  <li class="breadcrumb-item"><a href="#">منظومة الإعلام</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">وكالة الأنباء السعودية </li>
+              </ol>
+          </nav>
+
+          <h3 class="title"> منظومة الإعلام </h3>
+      </div>
+
+  </div> -->
+
+  <div class="inner-container ">
+      <div class="about-media">
+          <div class="container">
+
+              <div class="d-flex flex-column gap-2 mb-4">
+                  <h4 class="title">
+                    {{rendering?.fields?.title?.value}}
+                  </h4>
+              </div>
+              <div class="row mb-4 align-items-stretch">
+                  <div class="col-md-6">
+                      <div class="vid-media">
+                          <div class="icon">
+                              <img
+                              [src]="rendering?.fields?.Image?.value.src"
+                              [alt]="rendering?.fields?.Image?.value.alt"
+                              [title]="rendering?.fields?.Image?.value.alt"
+                              onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                              loading="lazy" decoding="async"
+                              class="img-fluid" 
+                              >
+                              <a (click)="toggleVid()">
+                                  <img src="assets/img/media/play.svg" class="img-fluid play" alt="play" title="play">
+                              </a>
+                          </div>
+
+                      </div>
+                  </div>
+
+                  <div class="col-md-6 d-flex justify-content-between flex-column">
+                      <div class=" text">
+
+                          <p [innerHTML]="rendering?.fields?.Description?.value"> 
+                          </p>
+
+                      </div>
+                      <div
+                          class=" card-light-border p-3 mt-2  media-data  d-flex justify-content-between align-items-center gap-4">
+
+                          <div class="d-flex align-items-center gap-2">
+                              <i class="fi fi-rs-calendar"></i>
+                              <p>{{rendering?.fields?.releaseYearTitle?.value}}<span>{{rendering?.fields?.releaseYearValue?.value}}</span></p>
+                          </div>
+                          <div class="d-flex align-items-center gap-2">
+                              <i class="fi fi-rs-marker"></i>
+                              <p>{{rendering?.fields?.HeadquartersTitle?.value}}<span>{{rendering?.fields?.HeadquartersValue?.value}}</span></p>
+                          </div>
+
+                      </div>
+                  </div>
+
+              </div>
+
+
+          </div>
+
+          <div class="">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-12 ">
+                          <div
+                              class=" card-light-border p-3 py-4 mb-2 media-card  d-flex justify-content-center align-items-center gap-4">
+                              <div class="icon">
+                                  <img
+                                  [src]="rendering?.fields?.CompanyImage?.value.src"
+                                  [alt]="rendering?.fields?.CompanyImage?.value.alt"
+                                  [title]="rendering?.fields?.CompanyImage?.value.alt"
+                                  onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                                  loading="lazy" decoding="async"
+                                  class="img-fluid"
+                                  >
+                              </div>
+                              <div class=" d-flex flex-column gap-2">
+                                  <div class="d-flex align-items-center gap-2">
+                                      <i class="fi fi-rs-marker"></i>
+                                      <p>
+                                        {{rendering.fields?.Location?.value}}
+                                      </p>
+                                  </div>
+                                  <div class="d-flex align-items-center gap-2">
+                                      <i class="fi fi-rr-globe"></i>
+                                      <p>
+                                        {{rendering.fields?.Website?.value}}
+                                      </p>
+                                  </div>
+                                  <div class="d-flex align-items-center gap-2">
+                                      <i class="fi fi-rr-envelope"></i>
+                                      <p>
+                                        {{rendering.fields?.Email?.value}}
+                                      </p>
+                                  </div>
+                              </div>
+
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+
+
+  </div>
+
+
+
+
+
+<div class="overlay-vid" [ngClass]="{ 'show': isvidOpen }">
+</div>
+<div class="vid-popup" [ngClass]="{ 'show': isvidOpen }">
+  <button class="close-btn" (click)="lightboxClose()">&#x2715;</button>
+  <div class="">
+      <video id="VisaChipCardVideo"  controls>
+          <source 
+          [src]="rendering?.fields?.SitecoreVideo?.value.href" type="video/mp4">
+          <!--Browser does not support <video> tag -->
+          </video>
+
+  </div>
+
+</div>

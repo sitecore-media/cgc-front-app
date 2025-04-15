@@ -1,0 +1,20 @@
+<div class="inner-page">
+  <div class="inner-baner bg" [ngStyle]="{
+      'background-image': 'url(' +getImageUrl()+ ')',
+      'background-size': 'cover', 
+      'background-position': 'center',
+      'background-repeat': 'no-repeat'
+    }">
+    <div class="container">
+      <h3 class="title">{{ rendering?.fields?.breadCrumbData?.fields?.breadcrumbPageTitle }}</h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb custom-breadcrumb">
+          <li class="breadcrumb-item"
+            *ngFor="let Item of rendering?.fields?.breadCrumbData?.fields?.breadcrumbs; let last = last">
+            <a [routerLink]="Item?.url">{{ Item?.title }}</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>

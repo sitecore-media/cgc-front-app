@@ -1,0 +1,112 @@
+<!-- <div class="inner-page"> -->
+  <div class="news-container pt-3">
+    <div class="container">
+      <div class="news news-details">
+        <div class="d-flex justify-content-between align-items-center mb-2 gap-2">
+          <div class="d-flex flex-column gap-2">
+            <h3 class=""> {{ rendering?.fields?.title?.value }} </h3>
+          </div>
+          <!-- <div class="d-flex flex-column gap-2"> -->
+            <!-- <p class="date">
+              {{ rendering?.fields?.newsDate?.value | localizedDate }}
+            </p> -->
+            <!-- <h3 class="title">{{ rendering?.fields?.title?.value }}</h3> -->
+          <!-- </div> -->
+
+          <div class="d-flex action-icon gap-2">
+            <a href="">
+                <img src="assets/img/media/print.svg" alt="print" title="print" loading="lazy" decoding="async" />
+            </a>
+            <a href="">
+                <img src="assets/img/media/mail-g.svg" alt="mail-g" title="mail-g" loading="lazy" decoding="async" />
+            </a>
+            <a href="">
+                <img src="assets/img/media/share.svg" alt="share" title="share" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Center Position -->
+        <div
+          *ngIf="rendering?.fields?.position?.value === 'Center'"
+          class="content-details"
+        >
+          <!-- Image Content -->
+          <div class="icon" *ngIf="rendering.fields?.newslistingImage?.value?.src">
+            <!-- Desktop Image -->
+            <img
+              *ngIf="rendering?.fields?.newslistingImage?.value?.src"
+              [src]="rendering?.fields?.newslistingImage?.value?.src"
+              [alt]="rendering?.fields?.newslistingImage?.value?.alt"
+              [title]="rendering?.fields?.newslistingImage?.value?.alt"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- Description -->
+            <p *scRichText="rendering?.fields?.description"></p>
+          </div>
+        </div>
+
+        <!-- Right Position -->
+        <div
+          class="content-details side-img"
+          *ngIf="rendering?.fields?.position?.value === 'Right'"
+        >
+          <div
+            class="icon float-end"
+            *ngIf="rendering?.fields?.newslistingImage?.value?.src"
+          >
+            <img
+              *ngIf="rendering?.fields?.newslistingImage?.value?.src"
+              [src]="rendering?.fields?.newslistingImage?.value?.src"
+              [alt]="rendering?.fields?.newslistingImage?.value?.alt"
+              [title]="rendering?.fields?.newslistingImage?.value?.alt"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <p *scRichText="rendering?.fields?.description"></p>
+        </div>
+
+        <!-- Left Position -->
+        <div
+          class="content-details side-img"
+          *ngIf="rendering?.fields?.position?.value === 'Left'"
+        >
+          <div
+            class="icon float-start"
+            *ngIf="rendering?.fields?.newslistingImage?.value?.src"
+          >
+            <img
+              *ngIf="rendering?.fields?.newslistingImage?.value?.src"
+              [src]="rendering?.fields?.newslistingImage?.value?.src"
+              [alt]="rendering?.fields?.newslistingImage?.value?.alt"
+              [title]="rendering?.fields?.newslistingImage?.value?.alt"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <p *scRichText="rendering?.fields?.description"></p>
+        </div>
+
+        <!-- Fallback Content -->
+        <div
+          class="content-details d-flex gap-3"
+          *ngIf="
+            !rendering?.fields?.position?.value ||
+            !rendering?.fields?.image?.value?.src ||
+            !rendering?.fields?.newslistingImage?.value?.src
+          "
+        >
+          <p *scRichText="rendering?.fields?.description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+
+
+

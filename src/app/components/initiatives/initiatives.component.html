@@ -1,0 +1,64 @@
+<!--<section class="mobadrat">
+  <div class="container">
+    <div class="slider-card">
+      <a (click)="scrollToDiv()" style="cursor: pointer;" class="d-flex flex-column align-items-center justify-content-center gap-1 arrow-bottom">
+        <img src="assets/img/media/arrow.svg" class="" title="arrow" alt="arrow"  loading="lazy" decoding="async">
+
+        <h3>{{rendering?.fields?.ScrollDownText?.value}}</h3>
+      </a>
+      <h3 class="title">{{rendering.fields?.title?.value}}</h3>
+      <div class="slider my-4"  data-aos="fade-up" data-aos-duration="1200">
+        <swiper-container class="my-3" slides-per-view="1" space-between="10" navigation="true" pagination="true"
+          pagination-clickable="true" autoplay='{"delay": 2500}' loop="true" breakpoints='{
+            "640": { "slidesPerView": 1.5, "spaceBetween": 20 },
+            "768": { "slidesPerView": 2, "spaceBetween": 30 },
+            "1024": { "slidesPerView": 3, "spaceBetween": 40 },
+            "1324": { "slidesPerView": 3.5, "spaceBetween": 40 }
+          }'>
+          @for(card of rendering.fields?.initiativeSection;track card)
+          {
+            <swiper-slide>
+              <div class=" card-border mobadra-single">
+                <img [src]="card.fields?.image?.value?.src" class="" 
+                     [alt]="card.fields?.image?.value?.alt || 'Image'"
+                     [title]="card.fields?.image?.value?.alt"
+                     onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                     loading="lazy" decoding="async">
+              </div>
+            </swiper-slide>
+          }
+        </swiper-container>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<section class="mobadrat">
+  <div class="container">
+    <div class="slider-card">
+      <a (click)="scrollToDiv()" style="cursor: pointer;" class="d-flex flex-column align-items-center justify-content-center gap-1 arrow-bottom">
+        <img src="assets/img/media/arrow.svg" class="" alt="">
+        <h3> {{rendering?.fields?.ScrollDownText?.value}}</h3>
+      </a>
+
+      <h3 class="title">{{rendering.fields?.title?.value}}</h3>
+      <div class="slider my-4"  data-aos="fade-up" data-aos-duration="1200">
+        <owl-carousel-o [options]="customOptions" >
+          @for(card of rendering.fields?.initiativeSection;track card)
+          {
+            <ng-template carouselSlide>
+              <div class=" card-border mobadra-single">
+                <img [src]="card.fields?.image?.value?.src || 'assets/img/media/mob1.svg'" class="" 
+                [alt]="card.fields?.image?.value?.alt || 'Image'"
+                [title]="card.fields?.image?.value?.alt"
+                onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                loading="lazy" decoding="async">
+              </div>
+            </ng-template> 
+          }
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>

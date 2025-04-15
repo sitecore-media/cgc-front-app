@@ -1,0 +1,100 @@
+<app-reading-info [rendering]="rendering"></app-reading-info>
+<div class="rating" style="padding: 10px 2rem;">
+  <div class="container">
+    <div *ngIf="ratingFormShow" class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
+      <div class="d-flex align-items-center gap-4">
+        <mat-label [ngClass]="questionField?.model?.cssClass">{{
+          questionTitleLabel
+          }}</mat-label>
+        <div [formGroup]="group">
+          <button class="btn btn-primary btn-w" (click)="toggleCollapse('yes')" *ngIf="field"
+            [id]="field?.buttonField?.id" [name]="field?.buttonField?.name" [value]="titleLabel"
+            [ngClass]="field.model.cssClass" [disabled]="currentSelectedOption === 'yes'">
+            {{ titleLabel }}
+          </button>
+        </div>
+        <div [formGroup]="group">
+          <button class="btn btn-primary btn-w" (click)="toggleCollapse('no')" *ngIf="secondField"
+            [id]="secondField.buttonField.id" [name]="secondField.buttonField.name" [value]="secondTitleLabel"
+            [ngClass]="secondField.model.cssClass" [disabled]="currentSelectedOption === 'no'">
+            {{ secondTitleLabel }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rating-content" *ngIf="isCollapsed">
+      <div class="rateing-form">
+        <app-label [title]="checkBoxField?.model?.title" [class]="checkBoxField?.model?.labelCssClass">
+          {{ checkBoxField?.model?.title }}
+        </app-label>
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Positive options loaded from API -->
+            <div class="d-flex flex-column gap-2" *ngIf="!isNoSelected">
+              <div class="form-check" *ngFor="let option of checkBoxFieldList; let i = index">
+                <input class="form-check-input" type="checkbox" [value]="option.value"
+                  [name]="checkBoxField?.valueField?.name" [id]="checkBoxField?.valueField?.id + i"
+                  (change)="onCheckboxChange($event, option)" />
+                <label class="form-check-label" [for]="'positiveReason' + i">
+                  {{ option.value }}
+                </label>
+              </div>
+            </div>
+
+            <!-- Negative options loaded from API -->
+            <div class="d-flex flex-column gap-2" *ngIf="isNoSelected">
+              <div class="form-check" *ngFor="let option of checkBoxNoFieldList; let i = index">
+                <input class="form-check-input" type="checkbox" [value]="option.value"
+                  [name]="checkBoxNoField?.valueField?.name" [id]="checkBoxNoField?.valueField?.id + i"
+                  (change)="onCheckboxChange($event, option)" />
+                <label class="form-check-label" [for]="'negativeReason' + i">
+                  {{ option.value }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="viewTextArea">
+            <div class="mb-3">
+              <app-label [title]="textAreaField?.model?.title" [class]="textAreaField?.model?.labelCssClass">
+                {{ textAreaField.model.title }}
+              </app-label>
+              <textarea [id]="textAreaField?.valueField?.id" [name]="textAreaField?.valueField?.name"
+                [value]="textAreaField?.model?.value" rows="3" class="form-control" style="height: 90px"
+                [maxLength]="textAreaField?.model?.maxLength" [placeholder]="textAreaField?.model?.placeholderText"
+                (input)="updateComment($event)"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex mt-3 gap-3">
+          <button type="button" class="btn btn-primary px-4" style="width: 70px;"
+            [id]="buttonSubmitField?.buttonField?.id" [name]="buttonSubmitField?.buttonField?.name"
+            (click)="submitForm()" [disabled]="selectedReasons.length === 0">
+            {{ buttonSubmitTitle }}
+          </button>
+          <button type="button" class="btn btn-outline-light px-4" style="width: 70px;" (click)="closeCollapse()"
+            [id]="buttonRemovedField?.buttonField?.id" [name]="buttonRemovedField?.buttonField?.name">
+            {{ buttonRemovedTitle }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- pop-up -->
+<div class="contact-popup" [ngClass]="{ 'show': isContactOpen }">
+  <button class="close-btn" (click)="closePopUp()">&#x2715;</button>
+  <div class="contact-text d-flex gap-4 flex-column">
+    <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+      <div class="icon">
+        <img *ngIf="isSuccess" src="assets/img/media/true.png" style="width: 80px;" class="" alt="">
+        <img *ngIf="!isSuccess" src="assets/img/media/false.png" style="width: 80px;" class="" alt="">
+
+      </div>
+      <h3>{{message}}</h3>
+    </div>
+
+  </div>
+
+</div>

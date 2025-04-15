@@ -1,0 +1,183 @@
+
+<div class="inner-page">
+
+
+  <div class="inner-baner">
+      <div class="container">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb custom-breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">تواصل معنا</li>
+              </ol>
+          </nav>
+
+          <h3 class="title"> تواصل معنا</h3>
+      </div>
+
+  </div>
+
+  <div class="contact-container">
+
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="mb-3">
+                              <label for="" class="form-label ">الإسم الأول </label>
+                              <span class="text-danger mx-1">*</span>
+                              <input type="text" class="form-control" id="" placeholder="الإسم الأول ">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="mb-3">
+                              <label for="" class="form-label">الإسم الأخير </label>
+                              <span class="text-danger mx-1">*</span>
+                              <input type="text" class="form-control" id="" placeholder="الإسم الأخير ">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="mb-3">
+                              <label for="" class="form-label">البريد الإلكتروني </label>
+                              <span class="text-danger mx-1">*</span>
+                              <input type="mail" class="form-control" id="" placeholder="البريد الإلكتروني">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <label for="" class="form-label">رقم الجوال </label>
+                          <span class="text-danger mx-1">*</span>
+                          <div class="input-group mb-3">
+                              <select class="form-select form-control drop-phone" aria-label="Default select example">
+                                  <option selected>+966</option>
+                                  <option value="1">+999</option>
+                                  <option value="2">+666</option>
+                              </select>
+                              <input type="text" class="form-control phone" placeholder="رقم الجوال ">
+
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="mb-3">
+                              <label for="" class="form-label">الموضوع </label>
+                              <span class="text-danger mx-1">*</span>
+                              <input type="text" class="form-control" id="" placeholder="الموضوع  ">
+                          </div>
+                      </div>
+
+                      <div class="col-md-6">
+                          <label for="" class="form-label">الفئة </label>
+                          <span class="text-danger mx-1">*</span>
+                          <select class="form-select form-control" aria-label="Default select example">
+                              <option selected>اقتراحات</option>
+                              <option value="1">تست</option>
+                              <option value="2">تست</option>
+                          </select>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="mb-3">
+                              <label for="" class="form-label"> كيف يمكننا المساعدة؟ </label>
+                              <span class="text-danger mx-1">*</span>
+                              <textarea rows="3" class="form-control" style="height: 90px;" id=""
+                                  placeholder=" كيف يمكننا المساعدة؟  "></textarea>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="mb-3">
+                              <label for="" class="form-label"> رفع المرفقات</label>
+                              <span class="text-danger mx-1">*</span>
+                              <p class="hint-text">الحد الأقصى لحجم الملف المسموح به هو 2 ميجابايت، وصيغ الملفات
+                                  المدعومة تشمل .jpg و .png و .pdf.</p>
+                              <div class="custom-file-upload">
+                                  <label for="fileInput" class="btn btn-outline-light gap-2">
+                                      <i class="fas fa-upload"></i>
+                                      <span>تصفح الملفات</span>
+                                  </label>
+                                  <input type="file" id="fileInput" (change)="onFileSelected($event)" />
+                                  <span>{{ fileName || '' }}</span>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+              <div class="col-md-4">
+                  <div class=" card-light-border   d-flex  flex-column gap-3">
+                      <h4 class="sub-title">تواصل مع أمر </h4>
+                      <div class="d-flex gap-2 contact-list">
+                          <div class="iocn">
+                              <img src="assets/img/media/call.svg" title="call" alt="call" style="width: 20px;"  loading="lazy" decoding="async">
+                          </div>
+                          <div class="d-flex flex-column gap-2">
+                              <h5 class=""> مركز الاتصال الموحد </h5>
+                              <p>0112974700</p>
+                          </div>
+                      </div>
+                      <div class="d-flex gap-2 contact-list">
+                          <div class="iocn">
+                              <img src="assets/img/media/mess.svg" title="mess" alt="mess" style="width: 20px;"  loading="lazy" decoding="async">
+                          </div>
+                          <div class="d-flex flex-column gap-2">
+                              <h5 class=""> رسالة قصيرة </h5>
+                              <p>0112974700</p>
+                          </div>
+                      </div>
+                      <div class="d-flex gap-2 contact-list">
+                          <div class="iocn">
+                              <img src="assets/img/media/mail.svg" title="mail" alt="mail" style="width: 20px;"  loading="lazy" decoding="async">
+                          </div>
+                          <div class="d-flex flex-column gap-2">
+                              <h5 class=""> البريد الالكتروني </h5>
+                              <p>info&#64;media.gov.sa</p>
+                          </div>
+                      </div>
+                      <div class="d-flex gap-2 contact-list">
+                          <div class="iocn">
+                              <img src="assets/img/media/mail.svg" title="mail" alt="mail" style="width: 20px;"  loading="lazy" decoding="async">
+                          </div>
+                          <div class="d-flex flex-column gap-2">
+                              <h5 class=""> فاكس </h5>
+                              <p>0112974700</p>
+                          </div>
+                      </div>
+
+                      <div class="d-flex gap-2 contact-list">
+                          <div class="iocn">
+                              <img src="assets/img/media/loca.svg" title="loca" alt="loca" style="width: 20px;"  loading="lazy" decoding="async">
+                          </div>
+                          <div class="d-flex flex-column gap-2">
+                              <h5 class=""> الموقع</h5>
+                              <p>المملكة العربية السعودية، الرياضحي العقيق، طريق الملك فهد</p>
+                          </div>
+                      </div>
+
+                      <div class="box">
+                          <h3>تابعنا على</h3>
+                          <ul class="d-flex flex-row gap-2 my-2">
+                              <li>
+                                  <a href="#" class="social">
+                                      <img src="assets/img/media/insta-b.svg" title="insta-b" alt="insta-b"  loading="lazy" decoding="async">
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="social">
+                                      <img src="assets/img/media/linkedin-b.svg" title="linkedin-b" alt="linkedin-b"  loading="lazy" decoding="async">
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="social">
+                                      <img src="assets/img/media/x-b.svg" title="x-b" alt="x-b"  loading="lazy" decoding="async">
+                                  </a>
+                              </li>
+
+                          </ul>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+</div>

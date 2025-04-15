@@ -1,0 +1,228 @@
+<!--<div class="inner-page">-->
+
+    <div class="inner-container">
+      <div class="about-media">
+        <div class="container">
+          <div class="d-flex flex-column gap-2">
+            <h4 class="title"> {{ rendering?.fields?.titleRegulations?.value }}</h4>
+            <div class="text">
+              <p class="mb-3">
+                {{ rendering?.fields?.descriptionRegulations?.value }}
+              </p>
+  
+              <p class="fw-600">
+                {{ rendering?.fields?.subTitleRegulations?.value }}:
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="vision no-back">
+          <div class="container">
+            <div class="row g-3">
+              <div *ngFor="let item of rendering?.fields?.regulationsSystemList" class="col-md-4 d-flex align-items-stretch">
+                <div class="d-flex flex-column w-100 card-light-border p-3 align-items-start justify-content-between gap-3" >
+                  <div class="icon" style="flex: none">
+                    <img [src]="item?.fields?.icon?.value?.src || 'assets/img/media/file-pdf.png'" class="img-fluid"
+                    [alt]="item?.fields?.icon?.value?.alt || 'file-pdf'"
+                    [title]="item?.fields?.icon?.value?.alt || 'file-pdf'"
+                    onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'" loading="lazy"
+                    decoding="async" />
+                  </div>
+  
+                  <div class="d-flex flex-column gap-2 rules-text">
+                    <h3>{{ item?.fields?.title?.value }}</h3>
+                  </div>
+  
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary" (click)="open_pdf(item?.fields?.linkShow?.value?.href)">{{ item?.fields?.linkShow?.value?.text }}</a>
+               
+                    <a class="btn btn-outline-light" [href]="item?.fields?.linkDownload?.value?.href" target="_blank">
+                      {{ item?.fields?.linkDownload?.value?.text }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+             <!-- <div class="col-md-4 d-flex align-items-stretch">
+                <div
+                  class="d-flex flex-column w-100 card-light-border p-3 align-items-start justify-content-between gap-3"
+                >
+                  <div class="icon" style="flex: none">
+                    <img
+                      src="assets/img/media/file-pdf.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+  
+                  <div class="d-flex flex-column gap-2 rules-text">
+                    <h3>نظام المطبوعات والنشر</h3>
+                  </div>
+  
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary"(click)="open_pdf()">عرض</a>
+                    <a class="btn btn-outline-light"> تحميل </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-stretch">
+                <div
+                  class="d-flex flex-column w-100 card-light-border p-3 align-items-start justify-content-between gap-3"
+                >
+                  <div class="icon" style="flex: none">
+                    <img
+                      src="assets/img/media/file-pdf.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+  
+                  <div class="d-flex flex-column gap-2 rules-text">
+                    <h3>اللائحة التنفيذية لنظام الإعلام المرئي والمسموع</h3>
+                  </div>
+  
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary"  (click)="open_pdf()">عرض</a>
+                    <a class="btn btn-outline-light"> تحميل </a>
+                  </div>
+                </div>
+              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+ <!--
+  <div class="inner-container">
+    <div class="about-media">
+      <div class="container">
+        <div class="d-flex flex-column gap-2">
+          <h4 class="title">{{ rendering?.fields?.titleRegulations?.value }}</h4>
+          <div class="text">
+            <p class="mb-3">
+              {{ rendering?.fields?.descriptionRegulations?.value }}
+            </p>
+            <p class="fw-600">
+              {{ rendering?.fields?.subTitleRegulations?.value }}:
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vision no-back">
+        <div class="container">
+          <div class="row g-3">
+            <div *ngFor="let item of rendering?.fields?.regulationsSystemList"
+              class="col-md-4 d-flex align-items-stretch">
+              <div
+                class="d-flex flex-column w-100 card-light-border p-3 align-items-start justify-content-between gap-3">
+                <div class="icon">
+                  <img [src]="item?.fields?.icon?.value?.src || 'assets/img/media/file-pdf.png'" class="img-fluid"
+                    [alt]="item?.fields?.icon?.value?.alt || 'file-pdf'"
+                    [title]="item?.fields?.icon?.value?.alt || 'file-pdf'"
+                    onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'" loading="lazy"
+                    decoding="async" />
+                </div>
+
+                <div class="d-flex flex-column gap-2 rules-text">
+                  <h3>{{ item?.fields?.title?.value }}</h3>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button class="btn btn-primary" (click)="openPdfPopup(item?.fields?.linkShow?.value?.href)">
+                    {{ item?.fields?.linkShow?.value?.text }}
+                  </button>
+                  <a class="btn btn-outline-light" [href]="item?.fields?.linkDownload?.value?.href" target="_blank">
+                    {{ item?.fields?.linkDownload?.value?.text }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+<!--</div>-->
+
+<!--<div class="overlay-contact" [ngClass]="{ show: isPdfOpen }" (click)="closePdfPopup($event)"></div>
+<div class="contact-popup" [ngClass]="{ show: isPdfOpen }">
+  <button class="close-btn" (click)="isPdfOpen = false; selectedPdf = null; pdfUrl = null;">&#x2715;</button>
+  <ngx-extended-pdf-viewer [src]="selectedPdf" useBrowserLocale="true" height="600px"></ngx-extended-pdf-viewer>
+   //// 
+   <iframe *ngIf="selectedPdf" [src]="selectedPdf" frameborder="0"></iframe> 
+</div>-->
+
+
+
+
+
+
+
+
+<!--<div class="col-md-4 d-flex align-items-stretch">
+                <div
+                  class="d-flex flex-column w-100 card-light-border p-3 align-items-start justify-content-between gap-3"
+                >
+                  <div class="icon" style="flex: none">
+                    <img
+                      src="assets/img/media/file-pdf.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+  
+                  <div class="d-flex flex-column gap-2 rules-text">
+                    <h3>اللائحة التنفيذية لنظام المطبوعات والنشر</h3>
+                  </div>
+  
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary" href="#">عرض</a>
+                    <a class="btn btn-outline-light"> تحميل </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-stretch">
+                <div
+                  class="d-flex flex-column w-100 card-light-border p-3 align-items-start justify-content-between gap-3"
+                >
+                  <div class="icon" style="flex: none">
+                    <img
+                      src="assets/img/media/file-pdf.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+  
+                  <div class="d-flex flex-column gap-2 rules-text">
+                    <h3>نظام المطبوعات والنشر</h3>
+                  </div>
+  
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary" href="#">عرض</a>
+                    <a class="btn btn-outline-light"> تحميل </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-stretch">
+                <div
+                  class="d-flex flex-column w-100 card-light-border p-3 align-items-start justify-content-between gap-3"
+                >
+                  <div class="icon" style="flex: none">
+                    <img
+                      src="assets/img/media/file-pdf.png"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+  
+                  <div class="d-flex flex-column gap-2 rules-text">
+                    <h3>اللائحة التنفيذية لنظام الإعلام المرئي والمسموع</h3>
+                  </div>
+  
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-primary" href="#">عرض</a>
+                    <a class="btn btn-outline-light"> تحميل </a>
+                  </div>
+                </div>
+              </div>-->

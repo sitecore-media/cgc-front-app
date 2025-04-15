@@ -1,0 +1,50 @@
+<section class="media-orga">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-up" data-aos-duration="1200">
+      <h3 class="title">{{ rendering?.fields?.title?.value }}</h3>
+    </div>
+
+    <!-- Media Cards -->
+    <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+
+      <!-- Dynamic Rendering -->
+       
+          @for(card of rendering?.fields?.initiativeSection;track card)
+          {
+            <div class="card-light-border media-orga-single p-3 gap-4" data-aos="flip-right" data-aos-duration="1200" data-aos-delay="600">
+              <div class="icon">
+                <img 
+                [src]="card?.fields?.image?.value?.src" 
+                [alt]="card?.fields?.image?.value?.alt || card?.name"  
+                [title]="card?.fields?.image?.value?.alt || card?.name"
+                onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                loading="lazy" decoding="async"/>
+              </div>
+              <!-- [routerLink]="generateDynamicHref(card?.url)" -->
+              <a 
+              
+              [routerLink]="card?.fields?.link?.value.href || '#'"
+              class="btn btn-primary ms-auto mt-auto">{{card?.fields?.link?.value.text}}</a>
+            </div>
+          }
+       
+      
+      
+      
+       <!--
+      <ng-container *ngFor="let slide of rendering?.fields?.medaiSlides">
+        <ng-container *ngFor="let card of slide?.fields?.mediaItems">
+          <div class="card-light-border media-orga-single p-3 gap-4" data-aos="flip-right" data-aos-duration="1200" data-aos-delay="600">
+            <div class="icon">
+              <img [src]="card?.fields?.mediaIcon?.value?.src" [alt]="card?.fields?.mediaIcon?.value?.alt || card?.name" />
+            </div>
+            <a [href]="card?.fields?.mediaLink?.value || '#'" class="btn btn-primary ms-auto mt-auto">قراءة المزيد</a>
+          </div>
+        </ng-container>
+      </ng-container>
+    -->
+    </div>
+  </div>
+</section>

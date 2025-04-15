@@ -1,0 +1,65 @@
+$blue: #1b8354;
+:root {
+  --level-1: #8dccad;
+  --level-2: #f5cc7f;
+  --level-3: #7b9fe0;
+  --level-4: #f27c8d;
+  --black: black;
+
+  --bs-primary: #1b8354;
+  --bs-primary-light: #f3fcf6;
+  --bs-primary-light2: #f6fef9;
+
+  --bs-primary-dark: #02542D;
+  --bs-primary-dark2: #074d31;
+  --bs-light-000: #ffffff;
+  --bs-light-050: #f9fafb;
+  --bs-light-100: #f3f4f6;
+  --bs-light-200: #d8d9db;
+  --bs-light-300: #b4b4b4;
+  --bs-light-400: #6c737f;
+  --bs-light-500: #ffffff4d;
+  --bs-light-600: #384250;
+  
+  --bs-light-800: #1f2a37;
+  --bs-light-900: #0d121c;
+  --bs-light-banner: #f7fdf9;
+
+  --bs-light-border: #e5e7eb;
+  --bs-dark-border: #9da4ae;
+  --bs-dark2-border:#909090;
+
+  --swiper-theme-color: #1b8354;
+
+  --nav-link-color: #161616;
+
+  --bs-font-12: 12px;
+  --bs-font-14: 14px;
+  --bs-font-16: 1rem;
+  --bs-font-18: 1.125rem;
+  --bs-font-20: 1.25rem;
+  --bs-font-24: 1.5rem;
+  --bs-font-30: 1.875rem;
+  --bs-font-32: 2rem;
+  --bs-font-40: 2.5rem;
+  --bs-font-48: 3rem;
+  --bs-font-64: 4rem;
+
+  --swiper-navigation-color: #161616;
+  --swiper-navigation-size: 10px !important;
+
+  /* Customize pagination bullets */
+  --swiper-pagination-bullet-inactive-color: #a09f9f;
+  --swiper-pagination-color: #1b8354;
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bottom: 18px;
+  --swiper-navigation-top-offset: 88%;
+
+  /* Customize spacing between bullets */
+  --swiper-pagination-bullet-horizontal-gap: 5px;
+}
+
+// .btn-primary {
+//     --bs-btn-color: #fff;
+//     --bs-btn-bg: #fd0d0d;
+// }

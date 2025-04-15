@@ -1,0 +1,193 @@
+<header class="main-header fixed-top">
+  <div class="tob-bar d-flex align-items-center">
+    <div class="d-flex align-items-center gap-4">
+      <div class="d-flex align-items-center gap-1">
+        <div class="icon">
+          <img src="assets/img/media/cloud.svg" alt="cloud" loading="lazy" decoding="async" />
+        </div>
+        <p class="text-white fw-400">
+          {{ weatherDescription }} - {{ temperature }}
+        </p>
+      </div>
+      <div class="d-flex align-items-center gap-1">
+        <div class="icon">
+          <img src="assets/img/media/date.svg" alt="date" loading="lazy" decoding="async" />
+        </div>
+        <p class="text-white fw-400">{{ currentDate }}</p>
+      </div>
+      <div class="d-flex align-items-center gap-1">
+        <div class="icon">
+          <img src="assets/img/media/time.svg" alt="time" loading="lazy" decoding="async" />
+        </div>
+        <p class="text-white fw-400">{{ currentTime }}</p>
+      </div>
+      <div class="d-flex align-items-center gap-1">
+        <div class="icon">
+          <img src="assets/img/media/location.svg" alt="location" loading="lazy" decoding="async" />
+        </div>
+        <p class="text-white fw-400">{{currentLocation}}</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg bg-body">
+    <a class="header-brand" [routerLink]="'/'+currentLanguage">
+      <div class="logo-img">
+        <!-- Desktop Logo -->
+        <img *ngIf="rendering?.fields?.logoImage?.value?.src"
+         [src]="rendering?.fields?.logoImage?.value?.src"
+         [alt]="rendering?.fields?.logoImage?.value?.alt"
+         [title]="rendering?.fields?.logoImage?.value?.alt" 
+         onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+         class="header-brand-img desktop-logo" loading="lazy" decoding="async" 
+        />
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav">
+          <li class="nav-item" >
+            <a class="nav-link active" aria-current="page" href="#">{{rendering?.fields?.primaryHeaderMenuLinks[0]?.fields?.menuButton?.value}}</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">عن الوزارة
+              <i class="fi fi-rr-angle-small-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">عن الوزارة</a></li>
+              <li><a class="dropdown-item" href="#"> مجلس الوزارة</a></li>
+     
+            </ul>
+            
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              منظومة الإعلام
+              <i class="fi fi-rr-angle-small-down"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"> منظومة الإعلام</a></li>
+              <li><a class="dropdown-item" href="#">  منظومة الإعلام</a></li>
+              <li><a class="dropdown-item" href="#"> منظومة الإعلام</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#" >البرامج والمبادرات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#" >المركز الإعلامي </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#" >الخدمات الإعلامية</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#" > اتصل بنا</a>
+          </li>
+        </ul>
+        <ul class=" me-auto navbar-nav" role="search">
+          <li class="nav-item">
+            <a class="nav-link " (click)="toggleSearch()" aria-current="page" href="#">
+              <img src="assets/img/media/search.svg" alt="" style="width: 25px;">
+              البحث
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " (click)="changeLang()" style="cursor: pointer;">
+              <img src="assets/img/media/lang.svg" alt="" >
+              English</a>
+          </li>
+         
+        </ul>
+      </div> -->
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <!-- Loop through primaryHeaderMenuLinks array -->
+        <li *ngFor="let link of rendering?.fields?.primaryHeaderMenuLinks" class="nav-item"
+          [ngClass]="{ dropdown: link.fields?.menuSection?.length }">
+          <!-- Render normal links -->
+          <a *ngIf="!link?.fields?.menuSection?.length" class="nav-link" [routerLink]="link.fields?.link?.value?.href"
+            [attr.target]="link.fields?.link?.value?.target || '_self'">
+            {{ link.fields?.menuButton?.value }}
+          </a>
+
+          <!-- Render dropdown links -->
+          <a *ngIf="link.fields?.menuSection?.length" class="nav-link dropdown-toggle" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            {{ link.fields?.menuButton?.value }}
+            <i class="fi fi-rr-angle-small-down"></i>
+          </a>
+
+          <!-- Dropdown menu -->
+          <ul *ngIf="link.fields?.menuSection?.length" class="dropdown-menu">
+            <li *ngFor="let section of link.fields?.menuSection">
+              <a class="dropdown-item" [routerLink]="section.fields?.link?.value?.href"
+                [attr.target]="section.fields?.link?.value?.target || '_self'">
+                {{ section.fields?.menuButton?.value || "Untitled Submenu" }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="ms-auto navbar-nav" role="search">
+        <!-- Search Section -->
+        <li class="nav-item">
+          <a class="nav-link" (click)="toggleSearch()" style="cursor: pointer">
+            <img src="assets/img/media/search.svg" title="Search" alt="Search" loading="lazy" decoding="async">
+            {{ rendering?.fields?.search?.placeHolder?.value }}
+          </a>
+        </li>
+
+        <!-- Language Section  -->
+        <li class="nav-item">
+          <a class="nav-link" (click)="changeLanguage()" style="cursor: pointer">
+            <img src="assets/img/media/lang.svg" title="Language Icon" alt="Language Icon" loading="lazy" decoding="async">
+            {{ rendering?.fields?.language?.title?.value }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<div class="overlay" [ngClass]="{ show: isSearchOpen }"></div>
+<div class="search-popup" [ngClass]="{ 'show': isSearchOpen }">
+  <button class="close-btn" (click)="toggleSearch()">&#x2715;</button>
+  <div class="search-text">
+    <p>
+      {{ rendering?.fields?.search?.searchShortDescription?.value }}<br>
+      <span>   {{ rendering?.fields?.search?.searchTitle?.value }}   ... </span>
+    </p>
+  </div>
+  <div class="search-input d-flex align-items-center gap-3 p-3">
+    <div class="input-group">
+      <span class="input-group-text search" id="basic-addon1">
+        <img src="assets/img/media/se.svg" title="Search" alt="search" loading="lazy" decoding="async" style="width: 20px;">
+      </span>
+      <input type="text" class="form-control" [(ngModel)]="searchKeyword"
+        placeholder="{{ rendering?.fields?.search?.placeHolder?.value }} ..." aria-label="Username"
+        aria-describedby="basic-addon1">
+      <span class="input-group-text mic" id="basic-addon1">
+        <img src="assets/img/media/mic.svg" title="mic" alt="mic" loading="lazy" decoding="async" style="width: 25px;">
+      </span>
+    </div>
+    <a (click)="Search()" class="btn btn-primary">{{ rendering?.fields?.search?.searchText?.value }}</a>
+  </div>
+</div>
+
+<!-- <div class="search-popup" [ngClass]="{ show: isSearchOpen }">
+  <button class="close-btn" (click)="toggleSearch()">&#x2715;</button>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">
+      <a (click)="Search()" style="text-decoration: none; color: inherit; cursor: pointer;">
+        <i class="fi fi-rr-search"></i>
+      </a>
+    </span>
+    <input type="text" [(ngModel)]="searchKeyword" class="form-control"
+      placeholder="{{ rendering?.fields?.search?.placeHolder?.value }}" aria-label="Username"
+      aria-describedby="basic-addon1" />
+  </div>
+</div> -->

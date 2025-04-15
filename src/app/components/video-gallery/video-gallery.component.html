@@ -1,0 +1,86 @@
+<!--<div class="inner-page">-->
+  <div class="news-container pt-4">
+    <div class="container">
+      <div class="news pt-5 pb-2">
+        <div class="row justify-content-center">
+          <div
+            *ngFor="let video of videoList"
+            class="card-light-border p-3 news-single video-gallery-single vid-media"
+            [class.list-grid-news]="activeSwitchType === 'list'"
+          >
+            <div class="icon">
+              <iframe
+              width="100%"
+              height="200"
+              [src]="video.sanitizedVideoUrl"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>            
+              <a (click)="openVideoPopup(video)">
+                <img
+                  src="assets/img/media/play.svg"
+                  alt=""
+                  class="img-fluid play"
+                />
+              </a>
+            </div>
+            <div class="content d-flex flex-column gap-2">
+              <h3 class="limit-two">{{ video.fields.title.value }}</h3>
+              <div class="d-flex align-items-center justify-content-between">
+                <a (click)="openVideoPopup(video)" class="btn btn-primary">{{
+                  rendering?.fields?.view?.value
+                }}</a>
+                <p class="date">
+                  {{ video.fields.date.value | localizedDate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div
+          *ngIf="totalItems > pageSize"
+          class="d-flex justify-content-center mt-3"
+        >
+          <pagination
+            [boundaryLinks]="true"
+            [totalItems]="totalItems"
+            [itemsPerPage]="pageSize"
+            [(ngModel)]="pageNumber"
+            (pageChanged)="onPageChange($event)"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;"
+          >
+          </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--</div>-->
+
+<!-- Video Popup -->
+<div class="overlay-vid" [ngClass]="{ show: isvidOpen }"></div>
+<div class="vid-popup" [ngClass]="{ show: isvidOpen }">
+  <button class="close-btn" (click)="closeVideoPopup()">&#x2715;</button>
+  <div class="popup-content">
+    <h3>{{ selectedVideo?.fields?.title?.value }}</h3>
+    <p *scRichText="selectedVideo?.fields?.shortDescription"></p>
+    <div class="video-container">
+      <iframe
+        *ngIf="safeVideoUrl"
+        width="100%"
+        height="400"
+        [src]="safeVideoUrl"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+  </div>
+</div>

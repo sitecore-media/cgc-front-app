@@ -1,0 +1,15 @@
+<div class="inner-page ">
+  <div class="d-flex flex-column gap-2 align-items-center justify-content-center notfound ">
+    <div class="iocn mb-4">
+      <img [src]="rendering.fields?.image.value.src" [title]="rendering.fields?.image.value.alt"
+        [alt]="rendering.fields?.image.value.alt" onerror="this.onerror=null; this.src='assets/img/media/under-c.svg'"
+        loading="lazy" decoding="async" style="width: 400px;">
+    </div>
+    <h5 *scRichText="rendering?.fields?.shortDescription" class="text-center">
+
+    </h5>
+    <a class="btn btn-primary " [routerLink]="rendering?.fields?.link?.value?.href">
+      {{rendering?.fields?.link?.value?.text}}
+    </a>
+  </div>
+</div>

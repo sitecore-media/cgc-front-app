@@ -1,0 +1,12 @@
+<div class="container">
+  <h4 class="title">
+    {{rendering.fields?.goalTitle?.value}}
+  </h4>
+  <div class="goals card-light-border d-flex flex-column gap-3 p-4 my-3">
+    <div>
+      <p class="sub-title mb-0"></p>
+      <p class="text" [innerHTML]="rendering.fields?.description?.value">
+      </p>
+    </div>
+  </div>
+</div>

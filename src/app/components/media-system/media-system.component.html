@@ -1,0 +1,60 @@
+<div class="inner-page">
+  <!-- <div class="inner-baner bg">
+      <div class="container">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb custom-breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"> منظومة الإعلام  </li>
+              </ol>
+          </nav>
+
+          <h3 class="title"> منظومة الإعلام  </h3>
+      </div>
+
+  </div> -->
+
+  <div class="inner-container">
+    <div class="about-media media-sys">
+      <div class="container">
+        <div class="row">
+          @for(Item of rendering?.fields?.mediaSystemCardList;track Item) {
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div
+              class="card-light-border p-3 mb-2 d-flex flex-column align-items-center gap-4"
+            >
+              <div class="icon">
+                <img
+                  [src]="
+                    Item?.fields?.imageLogoCard.value.src ||
+                    'assets/img/media/media3-3.png'
+                  "
+                  class="img-fluid"
+                  [alt]="Item?.fields?.imageLogoCard.value.alt || 'ImageCard'"
+                  [title]="Item?.fields?.imageLogoCard.value.alt || 'ImageCard'"
+                  onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="d-flex justify-content-end ms-auto gap-2">
+                <a
+                  class="btn btn-primary"
+                  [routerLink]="Item?.fields?.linkDetail?.value?.href"
+                >
+                  {{ Item?.fields?.linkDetail?.value?.text }}
+                </a>
+                <a
+                  class="btn btn-outline-light"
+                  [href]="Item?.fields?.linkWebsiteExternal?.value?.href"
+                >
+                  {{ Item?.fields?.linkWebsiteExternal?.value?.text }}
+                </a>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

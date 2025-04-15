@@ -1,0 +1,14 @@
+<div class="inner-page ">
+  <div class="d-flex flex-column gap-2 align-items-center justify-content-center notfound ">
+    <div class="iocn mb-4">
+      <img [src]="rendering?.fields?.image?.value?.src || 'assets/img/media/404.svg'"
+        [alt]="rendering?.fields?.image?.value?.alt || '404 error'"
+        [title]="rendering?.fields?.image?.value?.alt || '404 error'" 
+        onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+        loading="lazy" decoding="async" style="width: 350px;">
+    </div>
+    <h5 class=""> {{rendering?.fields?.title?.value}}</h5>
+    <p>{{rendering?.fields?.shortDescription.value}}</p>
+    <a class="btn btn-primary " [routerLink]="['/']"> {{rendering?.fields?.link.value.text}} </a>
+  </div>
+</div>

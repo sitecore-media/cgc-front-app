@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h4 class="modal-title" translate=""> pdf</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+<!--{{pdfSrc}}-->
+  
+<ngx-extended-pdf-viewer
+[src]="pdfSrc"
+[showToolbar]="true"
+[useBrowserLocale]="true"
+[showDownloadButton]="true"
+[showPrintButton]="true"
+[showZoomButtons]="true"
+[showPagingButtons]="true"
+height="600px"
+></ngx-extended-pdf-viewer>
+     
+
+
+
+</div>
+<!-- <div class="modal-footer">
+  <div class="d-flex justify-content-end gap-4">
+      <button type="button" class="btn btn-primary">
+          Save
+      </button>
+      <button type="button" class="btn btn-outline" (click)="activeModal.close('Close click')">
+          Cancel
+      </button>
+  </div>
+</div> -->

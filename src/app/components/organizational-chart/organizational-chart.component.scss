@@ -1,0 +1,78 @@
+
+
+:host ::ng-deep .p-organizationchart {
+ 
+  overflow-x: auto; 
+
+}
+
+
+@media (max-width: 600px) {
+  .node-content {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+ 
+}
+
+
+
+@media (max-width: 600px) {
+  :host ::ng-deep .p-organizationchart .p-organizationchart-node-content {
+    display: block;
+    text-align: center;
+  }
+
+  :host ::ng-deep .p-organizationchart .p-organizationchart-lines {
+    display: none; /* يخفي الخطوط بين العقد */
+  }
+}
+
+/////
+.overlay-contact {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
+
+.contact-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  width: 90%;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+
+

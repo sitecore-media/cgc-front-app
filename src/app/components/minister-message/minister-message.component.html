@@ -1,0 +1,59 @@
+<!--<div class="inner-page">-->
+    <div class="inner-container ">
+        <div class="container">
+            <div class="d-flex justify-content-between gap-2 mb-4">
+                <h4 class="title"> {{rendering?.fields?.ministerSpeechTitle?.value}}</h4>
+
+                <div class="d-flex action-icon gap-3">
+                    <a href="">
+                        <img src="assets/img/media/print.svg" alt="print" title="print" loading="lazy" decoding="async" />
+                    </a>
+                    <a href="">
+                        <img src="assets/img/media/mail-g.svg" alt="mail-g" title="mail-g" loading="lazy" decoding="async" />
+                    </a>
+                    <a href="">
+                        <img src="assets/img/media/share.svg" alt="share" title="share" loading="lazy" decoding="async" />
+                    </a>
+                </div>
+            </div>
+            <div class="card-gray word">
+                <div class="word-text d-flex flex-wrap  justify-content-between">
+                    <blockquote class="blockquote">
+                        <img src="assets/img/media/quot-t.svg" class="quot-t" title="Image-quta-start"
+                            alt="Image-quta-start" loading="lazy" decoding="async">
+                        <!-- <h4 class="mb-2"> {{rendering?.fields?.ministerSpeechTitle?.value}}</h4> -->
+                        <p class="message">
+                            {{rendering?.fields?.ministerSpeech?.value}}
+                        </p>
+                        <img src="assets/img/media/quot-b.svg" class="quot-b" title="image-quta" alt="image-quta"
+                            loading="lazy" decoding="async">
+
+                    </blockquote>
+
+                    <div class="icon">
+                        <img [src]="rendering?.fields?.MinisterImage?.value?.src || 'assets/img/media/wazir.png'"
+                            [alt]="rendering?.fields?.MinisterImage?.value?.alt || 'Minister Image'"
+                            [title]="rendering?.fields?.MinisterImage?.value?.alt || 'Minister Image'"
+                            onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'" loading="lazy"
+                            decoding="async">
+
+                    </div>
+
+                </div>
+
+                <div class="name">
+                    <p>
+                        {{rendering?.fields?.ministerName?.value}}<br>
+                        <span> {{rendering?.fields?.ministerTitle?.value}} </span>
+                    </p>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+<!--</div>-->

@@ -1,0 +1,89 @@
+<div class="inner-container ">
+  <div class="container">
+<!-- commit -->
+      <div class="row">
+          <div *ngFor="let service of rendering.fields?.children" class="col-md-4">
+              <div class=" card-light-border about-single gap-4">
+                  <div class="icon">
+                      <img 
+                      [src]="service?.fields?.logo?.value?.src" class="" 
+                      [alt]="service?.fields?.logo?.value?.alt"
+                      [title]="service?.fields?.logo?.value?.alt"
+                      onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+                      loading="lazy" decoding="async"
+                      >
+                  </div>
+                  <h3>{{service?.fields?.title?.value}} </h3>
+                  <div class=" d-flex   gap-2">
+                      <a class="btn btn-primary" [href]="service?.fields?.internallink?.value?.href">
+                          {{rendering?.fields?.readmore?.value}}
+                      </a>
+                      <a class="btn btn-outline-light" [href]="service?.fields?.externallink?.value.href">
+                          {{service?.fields?.externallink?.value.text}}
+                      </a>
+                  </div>
+
+
+              </div>
+          </div>
+          <!-- <div class="col-md-4">
+              <div class=" card-light-border about-single gap-4">
+                  <div class="icon">
+                      <img src="assets/img/media/ser2.svg" class="" alt="">
+                  </div>
+                  <h3>خدمات التواصل الحكومي </h3>
+                  <div class=" d-flex   gap-2">
+                      <a class="btn btn-primary" href="#">
+                          تفاصيل
+                      </a>
+                      <a class="btn btn-outline-light" href="#">
+                          الموقع الإلكتروني
+                      </a>
+                  </div>
+
+
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class=" card-light-border about-single gap-4">
+                  <div class="icon">
+                      <img src="assets/img/media/ser3.svg" class="" alt="">
+                  </div>
+                  <h3> خدمات الهيئة العامة لتنظيم الإعلام </h3>
+                  <div class=" d-flex   gap-2">
+                      <a class="btn btn-primary" href="#">
+                          تفاصيل
+                      </a>
+                      <a class="btn btn-outline-light" href="#">
+                          الموقع الإلكتروني
+                      </a>
+                  </div>
+
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class=" card-light-border about-single gap-4">
+                  <div class="icon">
+                      <img src="assets/img/media/ser4.svg" class="" alt="">
+                  </div>
+                  <h3> خدمات هيئة الإذاعة والتلفزيون </h3>
+                  <div class=" d-flex   gap-2">
+                      <a class="btn btn-primary" href="#">
+                          تفاصيل
+                      </a>
+                      <a class="btn btn-outline-light" href="#">
+                          الموقع الإلكتروني
+                      </a>
+                  </div>
+
+
+              </div>
+          </div> -->
+         
+      </div>
+
+
+
+
+  </div>
+</div>

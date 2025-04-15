@@ -1,0 +1,25 @@
+# Use the official Node image
+FROM node:23
+
+# Set working directory
+WORKDIR /app
+
+# Install Angular CLI globally
+RUN npm install -g @sitecore-jss/sitecore-jss-cli
+RUN npm install -g @angular/cli@"17.3.11"
+
+# Copy the entrypoint script to the container
+COPY modify-hosts.sh /modify-hosts.sh
+
+# Make the script executable
+RUN chmod +x /modify-hosts.sh
+
+# Expose Angular development server port
+EXPOSE 3000
+
+# Set default environment variables (you can override these at runtime)
+ENV HOST_IP=20.123.195.16
+ENV HOST_DOMAIN=cd.mom.dev
+
+# Set the entrypoint to run the modify-hosts.sh script first and then the default command
+ENTRYPOINT ["/modify-hosts.sh", "tail", "-f", "/dev/null"]

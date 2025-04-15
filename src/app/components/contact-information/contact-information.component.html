@@ -1,0 +1,184 @@
+<div class="contact-left">
+    <div class=" card-light-border   d-flex  flex-column gap-3">
+        <h4 class="sub-title"> {{rendering?.fields?.value?.titleContactUsInformation}} </h4>
+        @for(Item of rendering?.fields?.listContact;track Item)
+        {
+        <div class="d-flex gap-2 contact-list">
+            <div class="iocn">
+                <img [src]="Item?.fields?.icon?.value?.src|| 'assets/img/media/call.svg'" title="call" alt="call"
+                    style="width: 20px;" loading="lazy" decoding="async">
+            </div>
+            <div class="d-flex flex-column gap-2">
+                <h5 class=""> {{Item?.fields?.title?.value}} </h5>
+                <p>{{Item?.fields?.link?.value?.text}}</p>
+            </div>
+        </div>
+        }
+
+
+
+        <div class="box">
+            <h3> {{rendering?.fields?.value?.socialMediaTitle}}</h3>
+            <ul class="d-flex flex-row gap-2 my-2">
+                @for(Item of rendering?.fields?.linkSocialMedia;track Item)
+                {
+                <li>
+                    <a [href]="Item.fields?.linkSocialMedia?.value?.href || '#'" class="social">
+                        <img [src]="rendering?.fields?.iconSocialMedia?.value?.src || 'assets/img/media/insta-b.svg'"
+                            title="insta-b" alt="insta-b" loading="lazy" decoding="async">
+                    </a>
+                </li>
+                }
+
+            </ul>
+        </div>
+        <hr>
+
+        <h4 class="sub-title"> اتصالات الطوارئ </h4>
+        <div class="d-flex gap-2 flex-column contact-list">
+
+            <div class="d-flex  gap-2">
+                <h5 class=""> الدفاع المدني</h5>
+                <div class="d-flex gap-2">
+                    <p>999</p>
+                    <img src="assets/img/media/copy.svg" alt="" style="width: 20px;">
+                </div>
+            </div>
+            <div class="d-flex  gap-2">
+                <h5 class=""> الشرطة </h5>
+                <div class="d-flex gap-2">
+                    <p #mySpan>999</p>
+                  <a style="cursor: pointer;" (click)="copySpanText(mySpan)"> <img src="assets/img/media/copy.svg" alt="" style="width: 20px;"> </a>
+                  <div *ngIf="copied" class="copy-message">
+                    <p class="text-primary">
+                    <i class="fi fi-rr-shield-trust text-primary"></i>
+                     تم النسخ!
+                     </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="d-flex  gap-2">
+                <h5 class=""> الإسعاف </h5>
+                <div class="d-flex gap-2">
+                    <p>999</p>
+                    <img src="assets/img/media/copy.svg" alt="" style="width: 20px;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- new -->
+<!--<div class="contact-left">
+    <div class=" card-light-border   d-flex  flex-column gap-3">
+        <h4 class="sub-title">تواصل مع أمر </h4>
+        <div class="d-flex gap-2 contact-list">
+            <div class="iocn">
+                <img src="assets/img/media/call.svg" alt="" style="width: 20px;">
+            </div>
+            <div class="d-flex flex-column gap-2">
+                <h5 class=""> مركز الاتصال الموحد </h5>
+                <div class="d-flex gap-2">
+                    <p>0112974700</p>
+                    <img src="assets/img/media/copy.svg" alt="" style="width: 20px;">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 contact-list">
+            <div class="iocn">
+                <img src="assets/img/media/mess.svg" alt="" style="width: 20px;">
+            </div>
+            <div class="d-flex flex-column gap-2">
+                <h5 class=""> رسالة قصيرة </h5>
+                <p>0112974700</p>
+            </div>
+        </div>
+        <div class="d-flex gap-2 contact-list">
+            <div class="iocn">
+                <img src="assets/img/media/mail.svg" alt="" style="width: 20px;">
+            </div>
+            <div class="d-flex flex-column gap-2">
+                <h5 class=""> البريد الالكتروني </h5>
+                <p>info&#64;media.gov.sa</p>
+            </div>
+        </div>
+        <div class="d-flex gap-2 contact-list">
+            <div class="iocn">
+                <img src="assets/img/media/mail.svg" alt="" style="width: 20px;">
+            </div>
+            <div class="d-flex flex-column gap-2">
+                <h5 class=""> فاكس </h5>
+                <p>0112974700</p>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 contact-list">
+            <div class="iocn">
+                <img src="assets/img/media/loca.svg" alt="" style="width: 20px;">
+            </div>
+            <div class="d-flex flex-column gap-2">
+                <h5 class=""> الموقع</h5>
+                <p>المملكة العربية السعودية، الرياض حي العقيق، طريق الملك فهد</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>تابعنا على</h3>
+            <ul class="d-flex flex-row gap-2 my-2">
+                <li>
+                    <a href="#" class="social">
+                        <img src="assets/img/media/insta-b.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social">
+                        <img src="assets/img/media/linkedin-b.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social">
+                        <img src="assets/img/media/x-b.svg" alt="">
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <hr>
+
+        <h4 class="sub-title"> اتصالات الطوارئ </h4>
+        <div class="d-flex gap-2 flex-column contact-list">
+
+            <div class="d-flex  gap-2">
+                <h5 class=""> الدفاع المدني</h5>
+                <div class="d-flex gap-2">
+                    <p>999</p>
+                    <img src="assets/img/media/copy.svg" alt="" style="width: 20px;">
+                </div>
+            </div>
+            <div class="d-flex  gap-2">
+                <h5 class=""> الشرطة </h5>
+                <div class="d-flex gap-2">
+                    <p #mySpan>999</p>
+                  <a style="cursor: pointer;" (click)="copySpanText(mySpan)"> <img src="assets/img/media/copy.svg" alt="" style="width: 20px;"> </a>
+                  <div *ngIf="copied" class="copy-message">
+                    <p class="text-primary">
+                    <i class="fi fi-rr-shield-trust text-primary"></i>
+                     تم النسخ!
+                     </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="d-flex  gap-2">
+                <h5 class=""> الإسعاف </h5>
+                <div class="d-flex gap-2">
+                    <p>999</p>
+                    <img src="assets/img/media/copy.svg" alt="" style="width: 20px;">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>-->

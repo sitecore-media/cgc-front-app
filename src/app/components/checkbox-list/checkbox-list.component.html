@@ -1,0 +1,34 @@
+<div class="checkbox-list-container">
+  <!-- Display label if exists -->
+  <app-label 
+    *ngIf="field?.model?.title" 
+    [title]="field.model.title" 
+    [class]="field.model.labelCssClass">
+  </app-label>
+  
+  <!-- Checkbox list -->
+  <ul class="checkbox-list">
+    <li *ngFor="let option of items; let idx = index" class="checkbox-item">
+      <div class="checkbox-wrapper">
+        <input
+          type="checkbox"
+          [ngClass]="field.model.cssClass"
+          [id]="field.valueField.id + '_' + idx"
+          [name]="field.valueField.name"
+          [value]="option.value"
+          [checked]="isSelected(option.value)"
+          (change)="onChange($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)">
+        <label [for]="field.valueField.id + '_' + idx" class="checkbox-label">
+          {{option.text}}
+        </label>
+      </div>
+    </li>
+  </ul>
+  
+  <!-- Error messages can be displayed here -->
+  <div *ngIf="field.model.required && value.length === 0" class="field-error">
+    This field is required
+  </div>
+</div>

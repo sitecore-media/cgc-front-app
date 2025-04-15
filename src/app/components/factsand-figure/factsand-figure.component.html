@@ -1,0 +1,46 @@
+<section class="stats">
+  <div class="container">
+    <div class="d-flex flex-column gap-4 mb-3">
+      <h3 class="title" data-aos="fade-up" data-aos-duration="1200">
+        {{ rendering?.fields?.title?.value }}
+      </h3>
+      <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+        {{ rendering?.fields?.shortDescription?.value }}
+      </p>
+    </div>
+
+    <div
+      class="d-flex align-items-center justify-content-center gap-4 flex-wrap"
+    >
+      <div
+        class="card-light stats-single gap-4"
+        data-aos="flip-right"
+        data-aos-duration="1200"
+        data-aos-delay="600"
+        *ngFor="let item of rendering?.fields?.factsandFigureCards"
+      >
+        <!-- Icon Section -->
+        <div class="icon">
+          <!-- Desktop desktopImage -->
+          <img
+            *ngIf="
+              item?.fields?.icon?.fields?.desktopImage?.value?.src
+            "
+            [src]="item?.fields?.icon?.fields?.desktopImage?.value?.src"
+            [alt]="
+              item?.fields?.icon?.fields?.desktopImage?.value?.alt ||
+              'Desktop Icon'"
+              [title]="item?.fields?.icon?.fields?.desktopImage?.value?.alt ||
+              'Desktop Icon'"
+            class="w-100"   loading="lazy" decoding="async"
+            onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+          />
+        </div>
+        <!-- Number -->
+        <h3>{{ item?.fields?.number?.value }}</h3>
+        <!-- Description -->
+        <p>{{ item?.fields?.description?.value }}</p>
+      </div>
+    </div>
+  </div>
+</section>

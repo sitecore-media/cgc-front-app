@@ -1,0 +1,23 @@
+<section class="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5"  data-aos="fade-up" data-aos-duration="1400">
+        <div class="icon">
+          <img 
+          [src]="rendering?.fields?.image?.value?.src "
+          [alt]="rendering?.fields?.image?.value.alt" 
+          [title]="rendering?.fields?.image?.value.alt"
+          onerror="this.onerror=null; this.src='assets/img/media/Gov_Logo.svg'"
+          class="w-100"  loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="col-md-7"  data-aos="fade-up" data-aos-duration="1400" data-aos-delay="400">
+        <div class="desc d-flex flex-column gap-4">
+          <div class="text" >{{rendering?.fields?.ministerSpeech?.value}}</div>
+          <h3  [innerHTML]="rendering?.fields?.ministerName?.value"></h3>
+          <p class="job">{{rendering?.fields?.ministerTitle?.value}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

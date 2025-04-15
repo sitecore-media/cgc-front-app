@@ -1,0 +1,54 @@
+<!--<div class="inner-page">-->
+
+
+
+  <div class="inner-container ">
+      <div class="about-media">
+          <div class="container">
+            <div class="d-flex justify-content-between gap-2 mb-4">
+                <h4 class="title"> {{rendering?.fields?.title?.value}}</h4>
+
+                <div class="d-flex action-icon gap-3">
+                    <a href="">
+                        <img src="assets/img/media/print.svg" alt="print" title="print" loading="lazy" decoding="async" />
+                    </a>
+                    <a href="">
+                        <img src="assets/img/media/mail-g.svg" alt="mail-g" title="mail-g" loading="lazy" decoding="async" />
+                    </a>
+                    <a href="">
+                        <img src="assets/img/media/share.svg" alt="share" title="share" loading="lazy" decoding="async" />
+                    </a>
+                </div>
+            </div>
+
+              <div class="timeline-container">
+                <ng-container *ngFor="let Item of rendering?.fields?.establishmentSection">
+                  <div class="timeline-item " *ngIf="Item?.fields?.IsShown?.value" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="timeline-content">
+                        <div class="date">
+                        <h3>{{Item?.fields?.title?.value}}</h3>
+                        </div>
+                        <div class="desc">
+                        <p>{{Item?.fields?.shortDescription?.value}}</p>
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-image">
+                        <img [src]="Item?.fields?.image?.value?.src || '/assets/img/media/time1.png'" 
+                             [alt]="Item?.fields?.image?.value?.alt || 'Imageestiblishment'">
+                    </div>
+                </div>
+                  </ng-container>
+              
+              </div>
+
+          </div>
+
+      </div>
+
+
+  </div>
+
+
+
+<!--</div>-->

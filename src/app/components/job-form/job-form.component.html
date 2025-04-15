@@ -1,0 +1,190 @@
+<!--<div class="contact-container">
+  <div class="container">
+    <div class="row">
+      <h1>{{titleForm}} </h1>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        
+        <form [formGroup]="dynamicForm">
+          <div class="row">
+            <ng-container *ngFor="let field of fieldsData">
+              
+              <div class="col-md-6" 
+              *ngIf="['text', 'email', 'phone'].includes(getTypeofInput(field?.model?.fieldTypeItemId))">
+                <div class="mb-3">
+                  <label>{{ field?.model?.title }}</label>
+                  <input [type]="getTypeofInput(field?.model?.fieldTypeItemId)" class="form-control"
+                    [id]="field?.model?.itemId" [formControlName]="field?.model?.name" [required]="field?.model?.required"
+                    [placeholder]="field?.model?.title">
+                        
+                    <div class="text-danger"
+                    *ngIf="dynamicForm.get(field?.model?.name)?.invalid && dynamicForm.get(field?.model?.name)?.touched">
+                    <small *ngIf="dynamicForm.get(field?.model?.name)?.errors?.['required']">This field is required.</small>
+                    <ng-container *ngIf="dynamicForm.get(field?.model?.name)?.errors?.['pattern']">
+                      <small *ngFor="let validator of field?.model?.validationDataModels" class="text-danger">
+                        {{ formatMessage(validator.message, field?.model?.title || field?.model?.name) }}
+                      </small>
+                    </ng-container>
+                    </div>
+                </div>
+              </div>
+              
+              
+              <div class="col-md-6"  *ngIf="getTypeofInput(field?.model?.fieldTypeItemId) === 'select'">
+                <div class="mb-3">
+                  <label>{{ field.model.title }}</label>
+                  <select [type]="getTypeofInput(field.model.fieldTypeItemId)" class="form-control"
+                    [id]="field.model.itemId" [formControlName]="field.model.name" [required]="field.model.required">
+                    <option *ngFor="let option of field.model.items; let i = index" [value]="option.value"
+                      [selected]="i === 0">
+                      {{ option.value }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              
+             
+           
+              <div class="col-md-6" *ngIf="getTypeofInput(field?.model?.fieldTypeItemId) === 'file'">
+                <div class="mb-3">
+                  <label class="form-label">{{ field.model.title }}</label>
+                  <span class="text-danger mx-1">*</span>
+                  <p class="hint-text">
+                 {{messageSizeFileAndExtension}}
+                  </p>
+                  <div class="custom-file-upload">
+                    <label for="fileInput" class="btn btn-outline-light gap-2">
+                     
+                    </label>
+                    <input type="file" (change)="onFileSelected($event)" [formControlName]="field.model.name"
+                      [required]="field.model.required" accept=".jpg,.png,.pdf" id="fileInput" />
+                    <span *ngIf="base64String">✔  {{SelectedFile}} </span>
+                  </div>
+                </div>
+              </div>
+
+              
+
+            </ng-container>
+          </div>
+          <button class="btn btn-primary mt-2" (click)="onSubmit()">{{btnsubmit}}</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!--<div class="inner-page">-->
+  <div class="job-form">
+      <div class="container">
+        <div class="d-flex justify-content-between gap-2 mb-4">
+          <h4 class="title">{{titleForm}}</h4>
+
+          <div class="d-flex action-icon gap-3">
+              <a href="">
+                  <img src="assets/img/media/print.svg" alt="print" title="print" loading="lazy" decoding="async" />
+              </a>
+              <a href="">
+                  <img src="assets/img/media/mail-g.svg" alt="mail-g" title="mail-g" loading="lazy" decoding="async" />
+              </a>
+              <a href="">
+                  <img src="assets/img/media/share.svg" alt="share" title="share" loading="lazy" decoding="async" />
+              </a>
+          </div>
+      </div>
+          <form [formGroup]="dynamicForm">
+          <div class="row">
+            <ng-container *ngFor="let field of fieldsData">
+              <!-- Input Fields (Text, Email, Phone) -->
+              <div class="col-md-6" 
+              *ngIf="['text', 'email', 'phone'].includes(getTypeofInput(field?.model?.fieldTypeItemId))">
+                <div class="mb-3">
+                  <label class="form-label ">{{ field?.model?.title }}</label>
+                  <input [type]="getTypeofInput(field?.model?.fieldTypeItemId)" class="form-control"
+                    [id]="field?.model?.itemId" [formControlName]="field?.model?.name" [required]="field?.model?.required"
+                    [placeholder]="field?.model?.title">
+                        <!-- Validation Messages -->
+                    <div class="text-danger"
+                    *ngIf="dynamicForm.get(field?.model?.name)?.invalid && dynamicForm.get(field?.model?.name)?.touched">
+                    <small *ngIf="dynamicForm.get(field?.model?.name)?.errors?.['required']">This field is required.</small>
+                    <ng-container *ngIf="dynamicForm.get(field?.model?.name)?.errors?.['pattern']">
+                      <small *ngFor="let validator of field?.model?.validationDataModels" class="text-danger">
+                        {{ formatMessage(validator.message, field?.model?.title || field?.model?.name) }}
+                      </small>
+                    </ng-container>
+                    </div>
+                </div>
+              </div>
+             <!-- Select Dropdown -->
+             <div class="col-md-6"  *ngIf="getTypeofInput(field?.model?.fieldTypeItemId) === 'select'">
+              <div class="mb-3">
+                <label class="form-label">{{ field.model.title }}</label>
+                <select [type]="getTypeofInput(field.model.fieldTypeItemId)" class="form-select form-control drop-phone" aria-label="Default select example"
+                  [id]="field.model.itemId" [formControlName]="field.model.name" [required]="field.model.required">
+                  <option *ngFor="let option of field.model.items; let i = index" [value]="option.value"
+                    [selected]="i === 0">
+                    {{ option.value }}
+                  </option>
+                
+                </select>
+              </div>
+            </div>
+
+            <!-- File Upload -->
+            
+            <div class="col-md-6" *ngIf="getTypeofInput(field?.model?.fieldTypeItemId) === 'file'">
+              <div class="mb-3">
+                <label class="form-label">{{ field?.model?.title }}  </label>
+                <p class="hint-text">{{ messageSizeFileAndExtension }}</p>
+                <div class="custom-file-upload">
+                  <label for="fileInput" class="btn btn-outline-light gap-2">
+                    <i class="fas fa-upload"></i> <span> Choose File</span>
+                  </label>
+                  <input type="file" class="d-none" (change)="onFileSelected($event, field?.model?.name)"
+                    [formControlName]="field?.model?.name" accept=".jpg,.png,.pdf" id="fileInput" />
+                  <span *ngIf="base64String">✔ {{ SelectedFile }} </span>
+                </div>
+              </div>
+            </div>
+    
+               </ng-container>
+             
+              <div class="col-md-12">
+                  <div class="d-flex">
+                      <button class="btn btn-primary" (click)="onSubmit()">{{btnsubmit}}</button>
+                  </div>
+              </div>
+
+          </div>
+          </form>
+          <!--<div class="d-flex justify-content-start">
+              <p class="mt-4 fw-500 lastedit">تاريخ أخر تعديل &nbsp; <span> 20 - 2 - 2022 &nbsp; 04:00 PM </span> &nbsp; بتوقيت السعوديه </p>
+          </div>-->
+      </div>
+
+  </div>
+<!--</div>-->
+
+
+
+
+
+<!-- pop-up -->
+<div class="contact-popup" [ngClass]="{ 'show': isContactOpen }">
+  <button class="close-btn" (click)="closePopUp()">&#x2715;</button>
+  <div class="contact-text d-flex gap-4 flex-column">
+    <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+      <div class="icon">
+        <img *ngIf="isSuccess" src="assets/img/media/true.png" style="width: 80px;" class="" alt="">
+        <img *ngIf="!isSuccess" src="assets/img/media/false.png" style="width: 80px;" class="" alt="">
+
+      </div>
+      <h3>{{message}}</h3>
+    </div>
+
+  </div>
+
+</div>

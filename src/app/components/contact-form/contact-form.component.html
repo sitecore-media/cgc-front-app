@@ -1,0 +1,90 @@
+<div class="contact-right">
+  <form [formGroup]="dynamicForm">
+    <div class="row">
+      <ng-container *ngFor="let field of fieldsData">
+
+        <!-- Input Fields (Text, Email, Phone) -->
+        <div class="col-md-6"
+          *ngIf="['text', 'email', 'phone'].includes(getTypeofInput(field?.model?.fieldTypeItemId))">
+          <div class="mb-3">
+            <label>{{ field?.model?.title }}</label>
+            <input [type]="getTypeofInput(field?.model?.fieldTypeItemId)" class="form-control"
+              [id]="field?.model?.itemId" [formControlName]="field?.model?.name" [placeholder]="field?.model?.title" />
+
+            <!-- Validation Messages -->
+            <div class="text-danger"
+              *ngIf="dynamicForm.get(field?.model?.name)?.invalid && dynamicForm.get(field?.model?.name)?.touched">
+              <small *ngIf="dynamicForm.get(field?.model?.name)?.errors?.['required']">This field is required.</small>
+              <ng-container *ngIf="dynamicForm.get(field?.model?.name)?.errors?.['pattern']">
+                <small *ngFor="let validator of field?.model?.validationDataModels" class="text-danger">
+                  {{ formatMessage(validator.message, field?.model?.title || field?.model?.name) }}
+                </small>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <!-- Select Dropdown -->
+        <div class="col-md-6" *ngIf="getTypeofInput(field?.model?.fieldTypeItemId) === 'select'">
+          <div class="mb-3">
+            <label>{{ field.model.title }}</label>
+            <select class="form-select form-control" [id]="field?.model?.itemId" [formControlName]="field?.model?.name">
+              <option *ngFor="let option of field?.model?.items" [value]="option.value">
+                {{ option.value }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="col-md-6" *ngIf="getTypeofInput(field?.model?.fieldTypeItemId) === 'textarea'">
+          <div class="mb-3">
+            <label>{{ field?.model?.title }}</label>
+            <textarea [rows]="field?.model?.rows" class="form-control" [id]="field?.model?.itemId" style="height: 90px;"
+              [placeholder]="field?.model?.title" [formControlName]="field?.model?.name">
+            </textarea>
+          </div>
+        </div>
+
+        <!-- File Upload -->
+        <div class="col-md-6" *ngIf="getTypeofInput(field?.model?.fieldTypeItemId) === 'file'">
+          <div class="mb-3">
+            <label class="form-label">{{ field?.model?.title }}</label>
+            <p class="hint-text">{{ messageSizeFileAndExtension }}</p>
+            <div class="custom-file-upload">
+              <label for="fileInput" class="btn btn-outline-light gap-2">
+                <i class="fas fa-upload"></i> <span> Choose File</span>
+              </label>
+              <input type="file" (change)="onFileSelected($event, field?.model?.name)"
+                [formControlName]="field?.model?.name" accept=".jpg,.png,.pdf" id="fileInput" />
+              <span *ngIf="base64String">✔ {{ SelectedFile }} </span>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+    </div>
+
+    <button class="btn btn-primary mt-2" type="button" (click)="onSubmit()">Submit</button>
+  </form>
+</div>
+
+
+
+
+<!-- pop-up -->
+<div class="contact-popup" [ngClass]="{ 'show': isContactOpen }">
+  <button class="close-btn" (click)="closePopUp()">&#x2715;</button>
+  <div class="contact-text d-flex gap-4 flex-column">
+    <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+      <div class="icon">
+        <img *ngIf="isSuccess" src="assets/img/media/true.png" style="width: 80px;" class="" alt="">
+        <img *ngIf="!isSuccess" src="assets/img/media/false.png" style="width: 80px;" class="" alt="">
+
+      </div>
+      <h3>{{message}}</h3>
+    </div>
+
+  </div>
+
+</div>
