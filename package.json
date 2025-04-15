@@ -1,13 +1,13 @@
 {
-  "name": "mediaportal",
+  "name": "CGC",
   "version": "22.3.1",
   "description": "Application utilizing Sitecore JavaScript Services and Angular (angular-cli).",
   "config": {
-    "appName": "mediaportal",
+    "appName": "CGC",
     "rootPlaceholders": [
       "jss-main"
     ],
-    "sitecoreDistPath": "/dist/mediaportal",
+    "sitecoreDistPath": "/dist/CGC",
     "sitecoreConfigPath": "/App_Config/Include/zzz",
     "buildArtifactsPath": "./dist",
     "graphQLEndpointPath": "/sitecore/api/graph/edge",
@@ -21,12 +21,12 @@
     "bootstrap": "ts-node --project src/tsconfig.webpack-server.json scripts/bootstrap.ts",
     "build": "npm-run-all --serial bootstrap build:client build:server",
     "build:client": "cross-env-shell ng build --configuration=production --base-href $npm_package_config_sitecoreDistPath/browser/ --output-path=$npm_package_config_buildArtifactsPath/browser/",
-    "build:server": "cross-env-shell ng run mediaportal:server:production --output-path=$npm_package_config_buildArtifactsPath",
+    "build:server": "cross-env-shell ng run CGC:server:production --output-path=$npm_package_config_buildArtifactsPath",
     "e2e": "ng e2e",
     "graphql:update": "ts-node --project src/tsconfig.webpack-server.json ./scripts/update-graphql-fragment-data.ts",
     "install-pre-push-hook": "ts-node --project src/tsconfig.webpack-server.json ./scripts/install-pre-push-hook.ts",
     "jss": "jss",
-    "lint": "ng lint mediaportal --fix && npm run lint:yml",
+    "lint": "ng lint CGC --fix && npm run lint:yml",
     "lint:yml": "ts-node ./scripts/lint-yml.ts",
     "ng": "ng",
     "postbuild:server": "move-cli ./dist/main.js ./dist/server.bundle.js",

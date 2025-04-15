@@ -5,7 +5,7 @@
 config.production = process.env.PRODUCTION || "true";
 config.sitecoreApiKey = process.env.SITECORE_API_KEY || "{5958A16E-D09D-40DE-9116-10DB3F15ED05}";
 config.sitecoreApiHost = process.env.SITECORE_API_HOST || "https://cd.mom.dev";
-config.sitecoreSiteName = process.env.SITECORE_SITE_NAME || "mediaportal";
+config.sitecoreSiteName = process.env.SITECORE_SITE_NAME || "CGC";
 config.defaultLanguage = process.env.DEFAULT_LANGUAGE || "en";
 config.graphQLEndpoint = process.env.GRAPH_QL_ENDPOINT || "https://cd.mom.dev/sitecore/api/graph/edge";
 config.graphQLEndpointPath = process.env.GRAPH_QL_ENDPOINT_PATH || "/sitecore/api/graph/edge";
